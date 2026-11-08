@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Traveler Login</title>
-    <link rel="stylesheet" href="style.css">
+   
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 
@@ -27,7 +28,9 @@
 
                 <button type="button" class="submit-btn">Log In</button>
                 
+                
                 <p>New here? <a href="/register">Create account</a></p>
+             
                 <p>Hotel owner? <a href="/admin-login">Go to Admin Login</a></p>
             </form>
         </div>
