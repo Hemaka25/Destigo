@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Admin Login</title>
-    <link rel="stylesheet" href="style.css">
+   
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 
@@ -26,7 +27,8 @@
 
                 <button type="button" class="submit-btn" style="background-color: #1d2731;">Sign In As Admin</button>
                 
-                <p>Not an admin? <a href="3_traveler_login.html">Go to Traveler Login</a></p>
+                <!-- Meka oya kalinma hariyata dala thibba -->
+                <p>Not an admin? <a href='/traveler-login'>Go to Traveler Login</a></p>
             </form>
         </div>
         
@@ -35,3 +37,4 @@
 
 </body>
 </html>
+
