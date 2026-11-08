@@ -23,9 +23,9 @@
                 </p>
 
                
-                <button type="button" class="submit-btn" onclick="location.href='3_traveler_login.html'">Continue to Login</button>
+                <button type="button" class="submit-btn" onclick="location.href='/traveler-login'">Continue to Login</button>
                 
-                <p>New here? <a href="1_register.html">Create an account</a></p>
+                <p>New here?  <a href="/register">Create an account</a></p>
             </form>
         </div>
         
