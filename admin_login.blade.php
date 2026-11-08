@@ -27,7 +27,7 @@
 
                 <button type="button" class="submit-btn" style="background-color: #1d2731;">Sign In As Admin</button>
                 
-                <!-- Meka oya kalinma hariyata dala thibba -->
+                
                 <p>Not an admin? <a href='/traveler-login'>Go to Traveler Login</a></p>
             </form>
         </div>
