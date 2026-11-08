@@ -27,8 +27,8 @@
 
                 <button type="button" class="submit-btn">Log In</button>
                 
-                <p>New here? <a href="1_register.html">Create account</a></p>
-                <p>Hotel owner? <a href="4_admin_login.html">Go to Admin Login</a></p>
+                <p>New here? <a href="/register">Create account</a></p>
+                <p>Hotel owner? <a href="/admin-login">Go to Admin Login</a></p>
             </form>
         </div>
         
