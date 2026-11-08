@@ -23,10 +23,10 @@
                     <input type="radio" name="login-role"> I am an admin
                 </p>
 
-                <!-- Meka oya kalinma hariyata dala thibba -->
+               
                 <button type="button" class="submit-btn" onclick="location.href='/traveler-login'">Continue to Login</button>
                 
-                <!-- Meka oya kalinma hariyata dala thibba -->
+                
                 <p>New here?  <a href="/register">Create an account</a></p>
             </form>
         </div>
