@@ -1,0 +1,58 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- viewpoint = responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Destigo</title>
+
+    <!-- load css through laravel vite -->
+    @vite(['resources/css/app.css'])
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <!--logo -->
+            <div class="logo">
+                <h2>Destigo</h2>
+            </div>
+
+            <!-- user profile -->
+             <div class="user-profile">
+                <span>Welcome,User</span>
+            </div>
+
+
+
+
+        </header>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h3>Menu</h3>
+            </aside>
+
+            <!-- Page Content -->
+            <main class="content">
+                @yield('content')
+            </main>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
