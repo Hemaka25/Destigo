@@ -29,6 +29,8 @@
 
             <!-- user profile -->
              <div class="user-profile">
+                <!-- this character code uses to display notification symbol-->
+                <span>&#128276;</span>
                 <span>Welcome,User</span>
             </div>
 
@@ -43,6 +45,14 @@
             <!-- Sidebar -->
             <aside class="sidebar">
                 <h3>Menu</h3>
+
+                <ul>
+                    <li>Dashboard</li>
+                    <li>My Trips</li>
+                    <li>Bookings</li>
+                    <li>Profiles</li>
+                    <li>Settings</li>
+                </ul>
             </aside>
 
             <!-- Page Content -->
