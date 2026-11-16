@@ -113,3 +113,67 @@
     border-radius:6px;
     cursor:pointer;
 }
+
+/*hotel populer and card section */
+.popular-hotels{
+    margin-top:35px;
+}
+
+.popular-hotels h2{
+    color:#173D59;
+    margin-bottom: 5px;
+}
+
+.popular-hotels p{
+    color:#666;
+}
+
+/*apply style to hotel cards*/
+
+.hotel-list{
+    display: flex;
+    gap:20px;
+    margin-top:20px;
+}
+
+.hotel-card{
+    flex:1;
+    background-color:white;
+    border-radius:10px;
+    overflow:hodden;
+    box-shadow:0 2px 8px rgbs(0,0,0,0.08);
+}
+
+.hotel-card img{
+    width:100%;
+    height: 180px;
+    object-fit:cover;
+
+}
+
+.hotel-info{
+    padding:15px;
+}
+
+.hotel-info h3{
+    color:#173D59;
+    margin-top: 0;
+}
+
+.hotel-info h4{
+    color: #278A9B;
+}
+
+.hotel-info button{
+    width:100%;
+    padding:10px;
+    background-color : #173D59;
+    color:white;
+    border:none;
+    border-radius: 6px;
+    cursor:pointer;
+}
+
+.hotel-info button:hover{
+    background-color: #278A9B;
+}
