@@ -49,7 +49,7 @@
                 <ul>
                     <li>Dashboard</li>
                     <li>My Trips</li>
-                    <li>Bookings</li>
+                    <li class="{{ request()->is('hotel_booking*') ? 'active' : '' }}">Bookings</li>
                     <li>Profiles</li>
                     <li>Settings</li>
                 </ul>
