@@ -301,3 +301,116 @@
     line-height: 1.7;
     max-width: 900px;
 }
+
+/* Hotel Amenities */
+.hotel-amenities {
+    margin-top: 30px;
+    margin-bottom: 35px;
+}
+
+.hotel-amenities h2 {
+    color: #173D59;
+    margin-bottom: 18px;
+}
+
+.amenities-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+}
+
+.amenity-item span {
+    font-size: 22px;
+}
+
+.amenity-item p {
+    margin: 0;
+    color: #444;
+}
+
+/* Available Rooms */
+.available-rooms {
+    margin-top: 35px;
+    margin-bottom: 40px;
+}
+
+.available-rooms h2 {
+    color: #173D59;
+    margin-bottom: 8px;
+}
+
+.room-subtitle {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.room-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.room-card {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.room-card h3 {
+    color: #173D59;
+    margin-top: 0;
+}
+
+.room-card h4 {
+    color: #278A9B;
+}
+
+.available {
+    display: inline-block;
+    color: #278A9B;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.room-card button {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    background-color: #173D59;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.room-card button:hover {
+    background-color: #278A9B;
+}
+
+.view-details-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #173D59;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.view-details-btn:hover {
+    background-color: #278A9B;
+}

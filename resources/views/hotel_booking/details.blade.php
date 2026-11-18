@@ -3,12 +3,14 @@
 @section('content')
 
     <div class="hotel-details">
+        
 
     <a href="{{ url('/hotel_booking') }}">← Back to Search</a>
 
-
+<h2>{{ $hotel['name'] }}</h2>
     
-    <p>Ella,Sri Lanka</p>
+    <p>{{ $hotel['location'] }}</p>
+    <p>{{ $hotel['rating'] }}</p>
 
     <div class="hotel-gallery">
 
@@ -47,6 +49,68 @@
         Sri Lanka. Enjoy beautiful mountain views, relaxing rooms,
         and convenient access to popular attractions.
     </p>
+
+</div>
+
+<!-- Hotel Amenities -->
+<div class="hotel-amenities">
+
+    <h2>Hotel Amenities</h2>
+
+    <div class="amenities-list">
+
+        <div class="amenity-item">
+            <span>📶</span>
+            <p>Free Wi-Fi</p>
+        </div>
+
+        <div class="amenity-item">
+            <span>❄️</span>
+            <p>Air Conditioning</p>
+        </div>
+
+        <div class="amenity-item">
+            <span>🍽️</span>
+            <p>Restaurant</p>
+        </div>
+
+        <div class="amenity-item">
+            <span>🚗</span>
+            <p>Free Parking</p>
+        </div>
+
+        <div class="amenity-item">
+            <span>🏊</span>
+            <p>Swimming Pool</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Available Rooms -->
+<div class="available-rooms">
+
+    <h2>Available Rooms</h2>
+    <p class="room-subtitle">Choose a room that suits your stay.</p>
+
+    <div class="room-list">
+
+        @foreach ($hotel['rooms'] as $room)
+
+    <div class="room-card">
+        <h3>{{ $room['type'] }}</h3>
+
+        <p>👤 {{ $room['guests'] }} Guests</p>
+
+        <h4>LKR {{ number_format($room['price']) }} / night</h4>
+
+        <span class="available">Available</span>
+
+        <button type="button">Select Room</button>
+    </div>
+
+@endforeach
 
 </div>
 

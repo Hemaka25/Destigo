@@ -47,7 +47,8 @@
                         <p>Ella, Sri Lanka</p>
                         <h4>LKR 12,000 / night</h4>
                         <p>4.5 / 5</p>
-                        <button type="button">View Details </button>
+                        <a href="{{ url('/hotel_details/1') }}" class="view-details-btn">View Details
+                        </a>
                     </div>
         </div>
 
@@ -59,7 +60,7 @@
                 <p>Kandy, Sri Lanka</p>
                 <h4>LKR 9,500 / night</h4>
                 <p> 4.3 / 5</p>
-                <button type="button">View Details</button>
+                <a href="{{ url('/hotel_details/2') }}" class="view-details-btn">View Details</a>
             </div>
         </div>
 
@@ -70,7 +71,7 @@
                 <p>Mirissa, Sri Lanka</p>
                 <h4>LKR 15,000 / night</h4>
                 <p> 4.7 / 5</p>
-                <button type="button">View Details</button>
+                <a href="{{ url('/hotel_details/3') }}" class="view-details-btn">View Details</a>
             </div>
         </div>
 
@@ -81,7 +82,7 @@
                 <p>Mirissa, Sri Lanka</p>
                 <h4>LKR 15,000 / night</h4>
                 <p> 4.7 / 5</p>
-                <button type="button">View Details</button>
+                <a href="{{ url('/hotel_details/4') }}" class="view-details-btn"> View Details</a>
             </div>
         </div>
 
