@@ -9,7 +9,7 @@ Route::get('/hotel_booking', function () {
 
 Route::get('/hotel_details', function () {
     return view('hotel_booking.details');
-});
+}); 
 
 // Hotel Manager module
 Route::get('/hotel_manager/dashboard', [HotelDashboardController::class, 'index'])
