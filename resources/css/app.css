@@ -523,3 +523,103 @@
     margin-bottom: 0;
     margin-top: 10px;
 }
+
+/* Booking Actions */
+.booking-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.proceed-btn {
+    background-color: #173D59;
+    color: white;
+    border: none;
+    padding: 13px 35px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.proceed-btn:hover {
+    background-color: #278A9B;
+}
+
+/* Validation Error Messages */
+.error-message {
+    color: #D93025;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* Booking History Page */
+.booking-history {
+    width: 100%;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 75px;
+}
+
+.history-header h1 {
+    color: #173D59;
+    margin: 0 0 5px 0;
+}
+
+.history-header p {
+    color: #718096;
+    margin: 0;
+    font-size: 14px;
+}
+
+.book-hotel-btn {
+    background-color: #278A9B;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.book-hotel-btn:hover {
+    background-color: #173D59;
+}
+
+/* Booking History Filter */
+.history-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #DCE3E8;
+    margin-bottom: 15px;
+}
+
+.filter-tab {
+    display: flex;
+    align-items: center;
+}
+
+.filter-tab span {
+    color: #278A9B;
+    font-size: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #278A9B;
+}
+
+.booking-search input {
+    width: 220px;
+    padding: 10px;
+    border: 1px solid #DCE3E8;
+    border-radius: 7px;
+    font-size: 13px;
+    outline: none;
+}
+
+.booking-search input:focus {
+    border-color: #278A9B;
+}

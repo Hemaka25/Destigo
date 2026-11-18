@@ -4,6 +4,8 @@
 @section('content')
 
     <div class="booking-page">
+        <form action="{{ url('/booking_confirmation') }}" method="POST">
+    @csrf
 
         <a href="{{ url('/hotel_details/' . request()->route('hotelId')) }}">
             ← Back to Hotel Details
@@ -22,25 +24,47 @@
                 <div class="form-group">
                     <label>Full Name</label>
                     <input type="text" name="full_name"
-                           placeholder="Enter your full name">
+                           placeholder="Enter your full name" required>
+
+                            @error('full_name')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
                 </div>
 
                 <div class="form-group">
                     <label>Email Address</label>
                     <input type="email" name="email"
-                           placeholder="Enter your email">
+                           placeholder="Enter your email" required>
+
+                           @error('email')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                
+                
                 </div>
 
                 <div class="form-group">
                     <label>Phone Number</label>
                     <input type="tel" name="phone"
-                           placeholder="Enter your phone number">
+                           placeholder="Enter your phone number" required>
+
+                           @error('phone')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                
+                
+                
                 </div>
 
                 <div class="form-group">
                     <label>Country</label>
                     <input type="text" name="country"
-                           placeholder="Enter your country">
+                           placeholder="Enter your country" required>
+                        @error('country')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
+                
+                
                 </div>
 
                 <div class="form-group full-width">
@@ -61,17 +85,35 @@
 
         <div class="form-group">
             <label>Check-in Date</label>
-            <input type="date" name="check_in">
+            <input type="date" name="check_in" required>
+
+            @error('check_in')
+                <span class="error-message">{{ $message }}</span>
+             @enderror
+        
+        
         </div>
 
         <div class="form-group">
             <label>Check-out Date</label>
-            <input type="date" name="check_out">
+            <input type="date" name="check_out" required>
+        
+            @error('check_out')
+                 <span class="error-message">{{ $message }}</span>
+             @enderror
+        
+        
         </div>
 
         <div class="form-group">
             <label>Number of Guests</label>
-            <input type="number" name="guests" min="1" value="1">
+            <input type="number" name="guests" min="1" value="1" required>
+        
+            @error('guests')
+                <span class="error-message">{{ $message }}</span>
+            @enderror
+        
+        
         </div>
 
         <div class="form-group">
@@ -98,6 +140,15 @@
     <p>You can pay directly at the hotel during your stay.</p>
 
 </div>
+
+<!-- Proceed Button -->
+<div class="booking-actions">
+    <button type="submit" class="proceed-btn">
+        Proceed
+    </button>
+</div>
+
+</form>
 
     </div>
 

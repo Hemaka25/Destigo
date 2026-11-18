@@ -148,3 +148,26 @@ Route::get('/booking_confirmation/{hotelId}/{roomIndex}', function ($hotelId, $r
     ]);
 
 });
+
+
+use Illuminate\Http\Request;
+
+Route::post('/booking_confirmation', function (Request $request) {
+
+    $validated = $request->validate([
+        'full_name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'phone' => 'required|string|max:20',
+        'country' => 'required|string|max:100',
+        'check_in' => 'required|date',
+        'check_out' => 'required|date|after:check_in',
+        'guests' => 'required|integer|min:1',
+        'payment_method' => 'required|in:pay_at_hotel',
+    ]);
+
+    return 'Booking form submitted successfully!';
+});
+
+Route::get('/booking_history', function () {
+    return view('hotel_booking.history');
+});
