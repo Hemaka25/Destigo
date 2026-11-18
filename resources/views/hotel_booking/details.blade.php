@@ -107,7 +107,7 @@
 
         <span class="available">Available</span>
 
-        <button type="button">Select Room</button>
+        <a href="{{ url('/booking_confirmation/' . request()->route('id') . '/' . $loop->index) }}" class="select-room-btn">Select Room</a>
     </div>
 
 @endforeach

@@ -414,3 +414,112 @@
 .view-details-btn:hover {
     background-color: #278A9B;
 }
+
+/* Guest Information Section */
+.guest-information {
+    background-color: #FFFFFF;
+    padding: 25px;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+.guest-information h3 {
+    color: #173D59;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.guest-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #333333;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #278A9B;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Stay Details Section */
+.stay-details {
+    background-color: #FFFFFF;
+    padding: 25px;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+.stay-details h3 {
+    color: #173D59;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.stay-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Payment Method Section */
+.payment-method {
+    background-color: #FFFFFF;
+    padding: 25px;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+.payment-method h3 {
+    color: #173D59;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-option input {
+    accent-color: #173D59;
+}
+
+.payment-option label {
+    color: #333333;
+    font-weight: 600;
+}
+
+.payment-method p {
+    color: #666666;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
