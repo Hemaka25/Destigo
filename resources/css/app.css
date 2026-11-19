@@ -580,3 +580,19 @@ button.hm-reject-btn:hover {
 .hm-cancel-link:hover {
     color: #173D59;
 }
+
+/* Delete button (bin icon) */
+button.hm-icon-button {
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Error message */
+.hm-alert-error {
+    background-color: #fde0e0;
+    color: #b32626;
+}

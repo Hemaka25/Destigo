@@ -37,3 +37,6 @@ Route::get('/hotel_manager/rooms/{room}/edit', [HotelRoomController::class, 'edi
 
 Route::put('/hotel_manager/rooms/{room}', [HotelRoomController::class, 'update'])
     ->name('hotel.rooms.update');
+
+Route::delete('/hotel_manager/rooms/{room}', [HotelRoomController::class, 'destroy'])
+    ->name('hotel.rooms.destroy');

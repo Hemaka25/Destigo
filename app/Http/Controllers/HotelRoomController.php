@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Hotel;
 use App\Models\Room;
 use Illuminate\Http\Request;
@@ -88,5 +89,26 @@ class HotelRoomController extends Controller
 
         return redirect()->route('hotel.rooms')
             ->with('success', 'Room updated.');
+    }
+
+    // Delete a room (only if it has no bookings)
+    public function destroy(Room $room)
+    {
+        abort_if($room->hotel_id !== Hotel::first()->id, 403);
+
+        // Does any booking use this room?
+        $hasBookings = Booking::whereHas('rooms', function ($query) use ($room) {
+            $query->where('rooms.id', $room->id);
+        })->exists();
+
+        if ($hasBookings) {
+            return redirect()->route('hotel.rooms')
+                ->with('error', 'This room has bookings and cannot be deleted.');
+        }
+
+        $room->delete();
+
+        return redirect()->route('hotel.rooms')
+            ->with('success', 'Room deleted.');
     }
 }

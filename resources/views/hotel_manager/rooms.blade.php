@@ -15,6 +15,11 @@
         <div class="hm-alert">{{ session('success') }}</div>
     @endif
 
+    <!-- Error message -->
+    @if (session('error'))
+        <div class="hm-alert hm-alert-error">{{ session('error') }}</div>
+    @endif
+
     <div class="hm-table-box">
         <table class="hm-table">
             <thead>
@@ -39,7 +44,15 @@
                         </td>
                         <td>
                             <a href="{{ route('hotel.rooms.edit', $room) }}" class="hm-icon-btn">✏️</a>
-                            <a href="#" class="hm-icon-btn">🗑️</a>
+
+                            <form method="POST"
+                                  action="{{ route('hotel.rooms.destroy', $room) }}"
+                                  class="hm-inline-form"
+                                  onsubmit="return confirm('Are you sure you want to delete this room?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="hm-icon-button">🗑️</button>
+                            </form>
                         </td>
                     </tr>
                 @empty
