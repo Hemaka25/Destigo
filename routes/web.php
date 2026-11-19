@@ -3,11 +3,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\HotelBookingController;
 
 // Hotel Search Route
-Route::get('/hotel_booking', function () {
-    return view('hotel_booking.index');
-});
+use App\Models\Hotel;
+
+Route::get('/hotel_booking', [HotelBookingController::class, 'index']);
 
 // Hotel Details Route
 Route::get('/hotel_details/{id}', function ($id) {
