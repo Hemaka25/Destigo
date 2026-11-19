@@ -477,3 +477,38 @@
     background-color: #b32626;
     color: white;
 }
+
+/* Accept / Reject form buttons */
+.hm-inline-form {
+    display: inline-block;
+    margin: 0;
+}
+
+button.hm-accept-btn,
+button.hm-reject-btn {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+button.hm-accept-btn {
+    border: none;
+}
+
+button.hm-reject-btn {
+    background-color: transparent;
+}
+
+button.hm-reject-btn:hover {
+    background-color: #b32626;
+    color: white;
+}
+
+/* Success message */
+.hm-alert {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background-color: #d9f5e3;
+    color: #1d7a45;
+    font-size: 14px;
+    border-radius: 6px;
+}

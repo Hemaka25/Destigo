@@ -20,6 +20,11 @@
            class="hm-tab {{ $status === 'cancelled' ? 'hm-tab-active' : '' }}">Cancelled</a>
     </div>
 
+    <!-- Success message -->
+    @if (session('success'))
+        <div class="hm-alert">{{ session('success') }}</div>
+    @endif
+
     <!-- Reservations Table -->
     <div class="hm-table-box">
         <table class="hm-table">
@@ -47,8 +52,19 @@
                         </td>
                         <td>
                             @if ($booking->status === 'pending')
-                                <a href="#" class="hm-accept-btn">Accept</a>
-                                <a href="#" class="hm-reject-btn">Reject</a>
+                                <form method="POST" action="{{ route('hotel.reservations.status', $booking) }}" class="hm-inline-form">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="status" value="confirmed">
+                                    <button type="submit" class="hm-accept-btn">Accept</button>
+                                </form>
+
+                                <form method="POST" action="{{ route('hotel.reservations.status', $booking) }}" class="hm-inline-form">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="status" value="cancelled">
+                                    <button type="submit" class="hm-reject-btn">Reject</button>
+                                </form>
                             @else
                                 <a href="#" class="hm-view-btn">View</a>
                             @endif

@@ -30,4 +30,23 @@ class HotelReservationController extends Controller
 
         return view('hotel_manager.reservations', compact('hotel', 'bookings', 'status'));
     }
+
+    
+    public function updateStatus(Request $request, Booking $booking)
+    {
+        // A manager can only change bookings of their own hotel
+        abort_if($booking->hotel_id !== Hotel::first()->id, 403);
+
+        // Only these two values are allowed
+        $request->validate([
+            'status' => 'required|in:confirmed,cancelled',
+        ]);
+
+        // Save the new status in the bookings table
+        $booking->update(['status' => $request->status]);
+
+        // Go back to the reservations page with a message
+        return redirect()->route('hotel.reservations')
+            ->with('success', 'Reservation updated.');
+    }
 }
