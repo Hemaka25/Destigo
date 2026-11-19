@@ -25,3 +25,9 @@ Route::get('/hotel_manager/reservations', [HotelReservationController::class, 'i
 
 Route::patch('/hotel_manager/reservations/{booking}/status', [HotelReservationController::class, 'updateStatus'])
     ->name('hotel.reservations.status');
+
+Route::get('/hotel_manager/rooms/create', [HotelRoomController::class, 'create'])
+    ->name('hotel.rooms.create');
+
+Route::post('/hotel_manager/rooms', [HotelRoomController::class, 'store'])
+    ->name('hotel.rooms.store');

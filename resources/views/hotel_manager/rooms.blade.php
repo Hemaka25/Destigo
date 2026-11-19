@@ -7,8 +7,13 @@
             <h1>Room Management</h1>
             <p>Add, edit and manage your hotel rooms.</p>
         </div>
-        <a href="#" class="hm-add-btn">+ Add Room</a>
+        <a href="{{ route('hotel.rooms.create') }}" class="hm-add-btn">+ Add Room</a>
     </div>
+
+    <!-- Success message -->
+    @if (session('success'))
+        <div class="hm-alert">{{ session('success') }}</div>
+    @endif
 
     <div class="hm-table-box">
         <table class="hm-table">

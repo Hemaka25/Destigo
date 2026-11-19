@@ -512,3 +512,71 @@ button.hm-reject-btn:hover {
     font-size: 14px;
     border-radius: 6px;
 }
+
+/* Add Room form */
+.hm-form-box {
+    max-width: 500px;
+    margin-top: 25px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.hm-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.hm-form-group label {
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #173D59;
+}
+
+.hm-form-group input,
+.hm-form-group select {
+    padding: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.hm-form-group input:focus,
+.hm-form-group select:focus {
+    outline: none;
+    border-color: #278A9B;
+}
+
+.hm-error {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #b32626;
+}
+
+.hm-form-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.hm-form-actions button.hm-add-btn {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.hm-cancel-link {
+    color: #666;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.hm-cancel-link:hover {
+    color: #173D59;
+}
