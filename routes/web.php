@@ -2,12 +2,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 // Hotel Search Route
 Route::get('/hotel_booking', function () {
     return view('hotel_booking.index');
 });
-
 
 // Hotel Details Route
 Route::get('/hotel_details/{id}', function ($id) {
@@ -17,23 +17,10 @@ Route::get('/hotel_details/{id}', function ($id) {
             'name' => 'Ella Mount View Hotel',
             'location' => 'Ella, Sri Lanka',
             'rating' => '4.5 / 5',
-
             'rooms' => [
-                [
-                    'type' => 'Deluxe Room',
-                    'guests' => 2,
-                    'price' => 12000,
-                ],
-                [
-                    'type' => 'Double Room',
-                    'guests' => 2,
-                    'price' => 15000,
-                ],
-                [
-                    'type' => 'Family Room',
-                    'guests' => 4,
-                    'price' => 20000,
-                ]
+                ['type' => 'Deluxe Room', 'guests' => 2, 'price' => 12000],
+                ['type' => 'Double Room', 'guests' => 2, 'price' => 15000],
+                ['type' => 'Family Room', 'guests' => 4, 'price' => 20000],
             ]
         ],
 
@@ -41,23 +28,10 @@ Route::get('/hotel_details/{id}', function ($id) {
             'name' => 'Kandy City Hotel',
             'location' => 'Kandy, Sri Lanka',
             'rating' => '4.3 / 5',
-
             'rooms' => [
-                [
-                    'type' => 'Deluxe Room',
-                    'guests' => 2,
-                    'price' => 12000,
-                ],
-                [
-                    'type' => 'Double Room',
-                    'guests' => 2,
-                    'price' => 13000,
-                ],
-                [
-                    'type' => 'Family Room',
-                    'guests' => 4,
-                    'price' => 20000,
-                ]
+                ['type' => 'Deluxe Room', 'guests' => 2, 'price' => 12000],
+                ['type' => 'Double Room', 'guests' => 2, 'price' => 13000],
+                ['type' => 'Family Room', 'guests' => 4, 'price' => 20000],
             ]
         ],
 
@@ -65,23 +39,10 @@ Route::get('/hotel_details/{id}', function ($id) {
             'name' => 'Mirissa Beach Resort',
             'location' => 'Mirissa, Sri Lanka',
             'rating' => '4.7 / 5',
-
             'rooms' => [
-                [
-                    'type' => 'Deluxe Room',
-                    'guests' => 2,
-                    'price' => 12000,
-                ],
-                [
-                    'type' => 'Double Room',
-                    'guests' => 2,
-                    'price' => 13000,
-                ],
-                [
-                    'type' => 'Family Room',
-                    'guests' => 4,
-                    'price' => 20000,
-                ]
+                ['type' => 'Deluxe Room', 'guests' => 2, 'price' => 12000],
+                ['type' => 'Double Room', 'guests' => 2, 'price' => 13000],
+                ['type' => 'Family Room', 'guests' => 4, 'price' => 20000],
             ]
         ]
     ];
@@ -93,11 +54,9 @@ Route::get('/hotel_details/{id}', function ($id) {
     return view('hotel_booking.details', [
         'hotel' => $hotels[$id]
     ]);
-
 });
 
-
-// Booking Confirmation Route
+// Booking Form Route
 Route::get('/booking_confirmation/{hotelId}/{roomIndex}', function ($hotelId, $roomIndex) {
 
     $hotels = [
@@ -139,19 +98,13 @@ Route::get('/booking_confirmation/{hotelId}/{roomIndex}', function ($hotelId, $r
         abort(404);
     }
 
-    $hotel = $hotels[$hotelId];
-    $room = $hotel['rooms'][$roomIndex];
-
     return view('hotel_booking.confirmation', [
-        'hotel' => $hotel,
-        'room' => $room
+        'hotel' => $hotels[$hotelId],
+        'room' => $hotels[$hotelId]['rooms'][$roomIndex]
     ]);
-
 });
 
-
-use Illuminate\Http\Request;
-
+// Process Booking Form
 Route::post('/booking_confirmation', function (Request $request) {
 
     $validated = $request->validate([
@@ -168,6 +121,7 @@ Route::post('/booking_confirmation', function (Request $request) {
     return 'Booking form submitted successfully!';
 });
 
+// Booking History Route
 Route::get('/booking_history', function () {
     return view('hotel_booking.history');
 });

@@ -1,18 +1,12 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <!-- viewpoint = responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Destigo</title>
 
-    <!-- load css through laravel vite -->
     @vite(['resources/css/app.css'])
 </head>
 
@@ -22,21 +16,14 @@
 
         <!-- Top Navbar -->
         <header class="top-navbar">
-            <!--logo -->
             <div class="logo">
                 <h2>Destigo</h2>
             </div>
 
-            <!-- user profile -->
-             <div class="user-profile">
-                <!-- this character code uses to display notification symbol-->
-                <span>&#128276;</span>
-                <span>Welcome,User</span>
+            <div class="user-profile">
+                <span>🔔</span>
+                <span>Welcome, User</span>
             </div>
-
-
-
-
         </header>
 
         <!-- Main Layout -->
@@ -45,7 +32,6 @@
             <!-- Sidebar -->
             <aside class="sidebar">
                 <h3>Menu</h3>
-
                 <ul>
                     <li>Dashboard</li>
                     <li>My Trips</li>
