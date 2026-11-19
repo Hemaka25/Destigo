@@ -38,7 +38,7 @@
                             </span>
                         </td>
                         <td>
-                            <a href="#" class="hm-icon-btn">✏️</a>
+                            <a href="{{ route('hotel.rooms.edit', $room) }}" class="hm-icon-btn">✏️</a>
                             <a href="#" class="hm-icon-btn">🗑️</a>
                         </td>
                     </tr>

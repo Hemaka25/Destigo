@@ -31,3 +31,9 @@ Route::get('/hotel_manager/rooms/create', [HotelRoomController::class, 'create']
 
 Route::post('/hotel_manager/rooms', [HotelRoomController::class, 'store'])
     ->name('hotel.rooms.store');
+
+Route::get('/hotel_manager/rooms/{room}/edit', [HotelRoomController::class, 'edit'])
+    ->name('hotel.rooms.edit');
+
+Route::put('/hotel_manager/rooms/{room}', [HotelRoomController::class, 'update'])
+    ->name('hotel.rooms.update');
