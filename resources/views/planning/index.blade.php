@@ -294,87 +294,45 @@
     </div>
 
     <!-- Trip Cards List -->
+    <!-- Trip Cards List -->
     <div class="trips-list">
-        <!-- Card 1: Ella Adventure -->
-        <div class="trip-card">
-            <div class="trip-card-left">
-                <div class="trip-thumb thumb-ella">
-                    <span class="thumb-sun"></span>
-                    <span class="thumb-hill-back"></span>
-                    <span class="thumb-hill-front"></span>
+        @forelse($trips as $trip)
+            <div class="trip-card">
+                <div class="trip-card-left">
+                    <div class="trip-thumb">
+                        <img src="{{ $trip->cover_img }}" alt="{{ $trip->trip_name }}">
+                    </div>
+                    <div>
+                        <h3 class="trip-info-title">{{ $trip->trip_name }}</h3>
+                        <div class="trip-meta-row">
+                            <span>📅</span>
+                            <span>{{ $trip->start_date_formatted }} - {{ $trip->end_date_formatted }}</span>
+                        </div>
+                        <div class="trip-meta-sub">
+                            <span>📍 {{ $trip->places_count }} {{ $trip->places_count === 1 ? 'place' : 'places' }}</span>
+                            <span>•</span>
+                            <span>{{ $trip->days_count }} {{ $trip->days_count === 1 ? 'day' : 'days' }}</span>
+                        </div>
+                    </div>
                 </div>
+                <div class="trip-card-right">
+                    <a href="{{ route('planning.show', $trip->id) }}" class="btn-view-itinerary">View Itinerary</a>
+                    <form action="{{ route('planning.destroy', $trip->id) }}" method="POST" style="margin: 0;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-delete-trip" onclick="return confirm('Delete this trip?')">Delete Trip</button>
+                    </form>
+                </div>
+            </div>
+        @empty
+            <div class="trip-card" style="justify-content: center; padding: 32px; text-align: center;">
                 <div>
-                    <h3 class="trip-info-title">Ella Adventure</h3>
-                    <div class="trip-meta-row">
-                        <span>📅</span>
-                        <span>10 Oct 2026 - 13 Oct 2026</span>
-                    </div>
-                    <div class="trip-meta-sub">
-                        <span>📍 3 places</span>
-                        <span>•</span>
-                        <span>3 days</span>
-                    </div>
+                    <h3 class="trip-info-title" style="margin-bottom: 6px;">No trips saved yet</h3>
+                    <p class="trips-subtitle" style="margin-bottom: 14px;">Click "+ Plan a Trip" to choose an area, pick places, and save your itinerary.</p>
+                    <a href="{{ route('planning.create') }}" class="btn-plan-trip">+ Plan a Trip</a>
                 </div>
             </div>
-            <div class="trip-card-right">
-                <a href="{{ route('planning.show', 1) }}" class="btn-view-itinerary">View Itinerary</a>
-                <button type="button" class="btn-delete-trip" onclick="this.closest('.trip-card').remove()">Delete Trip</button>
-            </div>
-        </div>
-
-        <!-- Card 2: Kandy Cultural Trip -->
-        <div class="trip-card">
-            <div class="trip-card-left">
-                <div class="trip-thumb thumb-kandy">
-                    <span class="thumb-sun"></span>
-                    <span class="thumb-hill-back"></span>
-                    <span class="thumb-hill-front"></span>
-                </div>
-                <div>
-                    <h3 class="trip-info-title">Kandy Cultural Trip</h3>
-                    <div class="trip-meta-row">
-                        <span>📅</span>
-                        <span>15 Nov 2026 - 18 Nov 2026</span>
-                    </div>
-                    <div class="trip-meta-sub">
-                        <span>📍 4 places</span>
-                        <span>•</span>
-                        <span>4 days</span>
-                    </div>
-                </div>
-            </div>
-            <div class="trip-card-right">
-                <a href="{{ route('planning.show', 2) }}" class="btn-view-itinerary">View Itinerary</a>
-                <button type="button" class="btn-delete-trip" onclick="this.closest('.trip-card').remove()">Delete Trip</button>
-            </div>
-        </div>
-
-        <!-- Card 3: Mirissa Beach Getaway -->
-        <div class="trip-card">
-            <div class="trip-card-left">
-                <div class="trip-thumb thumb-mirissa">
-                    <span class="thumb-sun"></span>
-                    <span class="thumb-hill-back"></span>
-                    <span class="thumb-hill-front"></span>
-                </div>
-                <div>
-                    <h3 class="trip-info-title">Mirissa Beach Getaway</h3>
-                    <div class="trip-meta-row">
-                        <span>📅</span>
-                        <span>20 Dec 2026 - 24 Dec 2026</span>
-                    </div>
-                    <div class="trip-meta-sub">
-                        <span>📍 3 places</span>
-                        <span>•</span>
-                        <span>5 days</span>
-                    </div>
-                </div>
-            </div>
-            <div class="trip-card-right">
-                <a href="{{ route('planning.show', 3) }}" class="btn-view-itinerary">View Itinerary</a>
-                <button type="button" class="btn-delete-trip" onclick="this.closest('.trip-card').remove()">Delete Trip</button>
-            </div>
-        </div>
+        @endforelse
     </div>
 </div>
 @endsection
