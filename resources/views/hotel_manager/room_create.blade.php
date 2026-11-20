@@ -1,4 +1,4 @@
-@extends('layouts.nav')
+@extends('layouts.hotel_manager')
 
 @section('content')
 
