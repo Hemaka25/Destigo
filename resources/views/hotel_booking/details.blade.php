@@ -7,10 +7,9 @@
 
     <a href="{{ url('/hotel_booking') }}">← Back to Search</a>
 
-<h2>{{ $hotel['name'] }}</h2>
-    
-    <p>{{ $hotel['location'] }}</p>
-    <p>{{ $hotel['rating'] }}</p>
+    <h2>{{ $hotel->hotel_name }}</h2>
+    <p> {{ $hotel->city }}, Sri Lanka</p>
+    <p> {{ $hotel->rating }} / 5</p>
 
     <div class="hotel-gallery">
 
@@ -96,22 +95,32 @@
 
     <div class="room-list">
 
-        @foreach ($hotel['rooms'] as $room)
+ @forelse ($hotel->rooms as $room)
 
     <div class="room-card">
-        <h3>{{ $room['type'] }}</h3>
+        <h3>{{ $room->room_type }}</h3>
 
-        <p>👤 {{ $room['guests'] }} Guests</p>
+        <p>👤 {{ $room->capacity }} Guests</p>
 
-        <h4>LKR {{ number_format($room['price']) }} / night</h4>
+        <h4>
+            LKR {{ number_format($room->price_per_night) }} / night
+        </h4>
 
-        <span class="available">Available</span>
+        <span class="available">
+            {{ $room->status }}
+        </span>
 
-        <a href="{{ url('/booking_confirmation/' . request()->route('id') . '/' . $loop->index) }}" class="select-room-btn">Select Room</a>
+        <a href="{{ url('/booking_confirmation/' . $hotel->id . '/' . $room->id) }}"
+           class="select-room-btn">
+            Select Room
+        </a>
     </div>
 
-@endforeach
+@empty
 
+    <p>No rooms are currently available.</p>
+
+@endforelse
 </div>
 
 

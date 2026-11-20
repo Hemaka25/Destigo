@@ -13,48 +13,12 @@ Route::get('/hotel_booking', [HotelBookingController::class, 'index']);
 // Hotel Details Route
 Route::get('/hotel_details/{id}', function ($id) {
 
-    $hotels = [
-        1 => [
-            'name' => 'Ella Mount View Hotel',
-            'location' => 'Ella, Sri Lanka',
-            'rating' => '4.5 / 5',
-            'rooms' => [
-                ['type' => 'Deluxe Room', 'guests' => 2, 'price' => 12000],
-                ['type' => 'Double Room', 'guests' => 2, 'price' => 15000],
-                ['type' => 'Family Room', 'guests' => 4, 'price' => 20000],
-            ]
-        ],
+    $hotel = App\Models\Hotel::with('rooms')->findOrFail($id);   
+            //Hotel::with('rooms') Retrieves the hotel and its related rooms using the relationship you created in Hotel.php.
+            //findOrFail($id) Searches for the hotel using its ID.
+            //compact('hotel')Passes the retrieved hotel information to your Blade page.
+    return view('hotel_booking.details', compact('hotel'));
 
-        2 => [
-            'name' => 'Kandy City Hotel',
-            'location' => 'Kandy, Sri Lanka',
-            'rating' => '4.3 / 5',
-            'rooms' => [
-                ['type' => 'Deluxe Room', 'guests' => 2, 'price' => 12000],
-                ['type' => 'Double Room', 'guests' => 2, 'price' => 13000],
-                ['type' => 'Family Room', 'guests' => 4, 'price' => 20000],
-            ]
-        ],
-
-        3 => [
-            'name' => 'Mirissa Beach Resort',
-            'location' => 'Mirissa, Sri Lanka',
-            'rating' => '4.7 / 5',
-            'rooms' => [
-                ['type' => 'Deluxe Room', 'guests' => 2, 'price' => 12000],
-                ['type' => 'Double Room', 'guests' => 2, 'price' => 13000],
-                ['type' => 'Family Room', 'guests' => 4, 'price' => 20000],
-            ]
-        ]
-    ];
-
-    if (!isset($hotels[$id])) {
-        abort(404);
-    }
-
-    return view('hotel_booking.details', [
-        'hotel' => $hotels[$id]
-    ]);
 });
 
 // Booking Form Route
