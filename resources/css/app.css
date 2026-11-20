@@ -620,6 +620,1180 @@
     padding: 25px;
     border: 1px solid #E5E5E5;
     border-radius: 10px;
+}
+
+/* =========================================
+   Destigo - Plan Your Trip (create.blade.php)
+   ========================================= */
+
+.destigo-create-page {
+    background-color: #F4F7FA;
+    padding: 28px 32px;
+    min-height: 85vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1B2B3A;
+}
+
+.create-header {
+    margin-bottom: 22px;
+}
+
+.create-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+}
+
+.create-subtitle {
+    font-size: 14px;
+    color: #6B7C8F;
+    margin: 0;
+}
+
+.create-grid {
+    display: grid;
+    grid-template-columns: 1.85fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.create-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.panel-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E6ECF2;
+    border-radius: 12px;
+    padding: 20px 22px;
+    box-shadow: 0 1px 3px rgba(23, 61, 89, 0.04);
+}
+
+.panel-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 2px 0;
+}
+
+.panel-sub {
+    font-size: 12.5px;
+    color: #7A8B9C;
+    margin: 0 0 16px 0;
+}
+
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.area-card {
+    border: 1.5px solid #E6ECF2;
+    border-radius: 10px;
+    padding: 8px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    text-align: left;
+}
+
+.area-card:hover {
+    border-color: #9ECBD3;
+}
+
+.area-card.selected {
+    border-color: #278A9B;
+    background-color: #F4FAFB;
+    box-shadow: 0 0 0 2px rgba(39, 138, 155, 0.14);
+}
+
+.area-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 76px;
+    border-radius: 7px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.area-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.area-check {
+    display: none;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #278A9B;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+}
+
+.area-card.selected .area-check {
+    display: flex;
+}
+
+.area-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 2px 0;
+}
+
+.area-places {
+    font-size: 11.5px;
+    color: #7A8B9C;
+    margin: 0;
+}
+
+.how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.step-badge {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #E3F2F5;
+    color: #278A9B;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.step-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 2px 0;
+}
+
+.step-desc {
+    font-size: 11px;
+    color: #7A8B9C;
+    margin: 0;
+    line-height: 1.35;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #3E5266;
+    margin-bottom: 5px;
+}
+
+.form-control-custom {
+    width: 100%;
+    padding: 9px 11px;
+    border: 1px solid #D5DFE8;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #1B2B3A;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+}
+
+.form-control-custom:focus {
+    outline: none;
+    border-color: #278A9B;
+}
+
+.interests-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.interest-pill {
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid #D5DFE8;
+    background-color: #FFFFFF;
+    color: #5C6F82;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.interest-pill.active {
+    border-color: #278A9B;
+    background-color: #E7F3F5;
+    color: #278A9B;
+    font-weight: 600;
+}
+
+.btn-suggestions {
+    width: 100%;
+    margin-top: 16px;
+    background-color: #278A9B;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-suggestions:hover {
+    background-color: #173D59;
+}
+
+@media (max-width: 1024px) {
+    .create-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .destigo-create-page {
+        padding: 18px 16px;
+    }
+    .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .how-steps,
+    .form-row-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* =========================================
+   Destigo - Suggested Places Modal & Page
+   ========================================= */
+
+.destigo-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(23, 61, 89, 0.52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.destigo-modal-backdrop.hidden {
+    display: none;
+}
+
+.destigo-modal-card {
+    background-color: #FFFFFF;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 820px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(15, 35, 52, 0.25);
+    overflow: hidden;
+}
+
+.destigo-modal-header {
+    padding: 18px 24px 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #EEF2F6;
+}
+
+.destigo-modal-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 3px 0;
+}
+
+.destigo-modal-sub {
+    font-size: 12px;
+    color: #7A8B9C;
+    margin: 0;
+}
+
+.destigo-modal-close {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    color: #7A8B9C;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.destigo-modal-close:hover {
+    background-color: #F4F7FA;
+    color: #173D59;
+}
+
+.destigo-modal-body {
+    padding: 18px 24px;
+    overflow-y: auto;
+    background-color: #FAFBFD;
+}
+
+.suggested-places-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.place-suggestion-card {
+    background-color: #FFFFFF;
+    border: 1.5px solid #E6ECF2;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+
+.place-suggestion-card.added {
+    border-color: #278A9B;
+    box-shadow: 0 0 0 1px rgba(39, 138, 155, 0.2);
+}
+
+.place-img-box {
+    position: relative;
+    height: 92px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.place-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.place-check-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #278A9B;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.place-suggestion-card.added .place-check-badge {
+    display: flex;
+}
+
+.place-card-content {
+    padding: 10px 12px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.place-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 4px 0;
+}
+
+.place-desc {
+    font-size: 11px;
+    color: #6B7C8F;
+    margin: 0 0 8px 0;
+    line-height: 1.35;
+}
+
+.place-meta {
+    font-size: 10.5px;
+    color: #7A8B9C;
+    margin: 0;
+}
+
+.btn-toggle-place {
+    width: 100%;
+    padding: 7px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid #D5DFE8;
+    background-color: #FFFFFF;
+    color: #173D59;
+    transition: all 0.15s ease;
+}
+
+.btn-toggle-place:hover {
+    border-color: #278A9B;
+    color: #278A9B;
+}
+
+.place-suggestion-card.added .btn-toggle-place {
+    background-color: #EAF5F7;
+    border-color: #C7E4E9;
+    color: #278A9B;
+}
+
+.destigo-modal-footer {
+    padding: 14px 24px;
+    background-color: #FFFFFF;
+    border-top: 1px solid #EEF2F6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.selected-summary-count {
+    font-size: 13px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 2px 0;
+}
+
+.selected-summary-hours {
+    font-size: 11px;
+    color: #7A8B9C;
+    margin: 0;
+}
+
+.modal-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-modal-cancel {
+    background-color: #FFFFFF;
+    border: 1px solid #D5DFE8;
+    color: #5C6F82;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-modal-cancel:hover {
+    background-color: #F4F7FA;
+}
+
+.btn-generate-timeline {
+    background-color: #278A9B;
+    border: none;
+    color: #FFFFFF;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-generate-timeline:hover {
+    background-color: #173D59;
+}
+
+@media (max-width: 768px) {
+    .suggested-places-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 520px) {
+    .suggested-places-grid {
+        grid-template-columns: 1fr;
+    }
+    .destigo-modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .modal-footer-actions {
+        justify-content: flex-end;
+    }
+}
+
+
+/* =========================================
+   Destigo - Suggested Timeline Page
+   ========================================= */
+
+.destigo-timeline-page {
+    background-color: #F4F7FA;
+    padding: 28px 32px;
+    min-height: 85vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1B2B3A;
+}
+
+.timeline-header {
+    margin-bottom: 22px;
+}
+
+.timeline-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+}
+
+.timeline-subtitle {
+    font-size: 13.5px;
+    color: #6B7C8F;
+    margin: 0;
+}
+
+.timeline-layout {
+    display: grid;
+    grid-template-columns: 1.9fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.timeline-main-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E6ECF2;
+    border-radius: 12px;
+    padding: 22px 24px;
+    box-shadow: 0 1px 3px rgba(23, 61, 89, 0.04);
+}
+
+.day-tabs-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.day-tab-btn {
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid #D5DFE8;
+    background-color: #FFFFFF;
+    color: #5C6F82;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.day-tab-btn:hover {
+    border-color: #278A9B;
+    color: #278A9B;
+}
+
+.day-tab-btn.active {
+    background-color: #278A9B;
+    border-color: #278A9B;
+    color: #FFFFFF;
+}
+
+.timeline-items-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-step-row {
+    display: grid;
+    grid-template-columns: 76px 24px 1fr;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.timeline-time-col {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #7A8B9C;
+    padding-top: 12px;
+    white-space: nowrap;
+}
+
+.timeline-axis-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.timeline-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #278A9B;
+    flex-shrink: 0;
+}
+
+.timeline-line {
+    width: 2px;
+    flex: 1;
+    background-color: #D6E9ED;
+    margin-top: 4px;
+    min-height: 24px;
+}
+
+.timeline-step-row:last-child .timeline-line {
+    display: none;
+}
+
+.timeline-activity-wrap {
+    padding-bottom: 14px;
+}
+
+.timeline-activity-card {
+    background-color: #FAFBFD;
+    border: 1px solid #E6ECF2;
+    border-left: 3px solid #278A9B;
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.timeline-activity-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 4px 0;
+}
+
+.timeline-activity-duration {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #278A9B;
+    margin: 0 0 4px 0;
+}
+
+.timeline-activity-note {
+    font-size: 11.5px;
+    color: #7A8B9C;
+    margin: 0;
+}
+
+.timeline-edit-link {
+    background: transparent;
+    border: none;
+    color: #278A9B;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 2px 4px;
+}
+
+.timeline-edit-link:hover {
+    text-decoration: underline;
+}
+
+.timeline-travel-gap {
+    font-size: 11px;
+    color: #8E9EAB;
+    padding: 8px 0 2px 6px;
+}
+
+.timeline-side-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.summary-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E6ECF2;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 3px rgba(23, 61, 89, 0.04);
+}
+
+.summary-heading {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 10px 0;
+}
+
+.summary-trip-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #278A9B;
+    margin: 0 0 2px 0;
+}
+
+.summary-trip-dates {
+    font-size: 11.5px;
+    color: #7A8B9C;
+    margin: 0 0 14px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #EEF2F6;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.summary-row:last-child {
+    margin-bottom: 0;
+}
+
+.summary-label {
+    color: #7A8B9C;
+}
+
+.summary-value {
+    font-weight: 700;
+    color: #173D59;
+}
+
+.tips-card {
+    background-color: #EBF5F7;
+    border: 1px solid #D3E8EC;
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+.tips-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 12px 0;
+}
+
+.tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tips-list li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 12px;
+    color: #4A5D6E;
+    line-height: 1.4;
+}
+
+.tips-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    color: #278A9B;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.timeline-actions-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.btn-save-trip {
+    width: 100%;
+    background-color: #278A9B;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-save-trip:hover {
+    background-color: #173D59;
+}
+
+.btn-edit-timeline {
+    width: 100%;
+    background-color: #FFFFFF;
+    color: #173D59;
+    border: 1px solid #D5DFE8;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-edit-timeline:hover {
+    border-color: #278A9B;
+    color: #278A9B;
+}
+
+.link-back-suggested {
+    font-size: 12px;
+    color: #7A8B9C;
+    text-decoration: none;
+    margin-top: 2px;
+}
+
+.link-back-suggested:hover {
+    color: #278A9B;
+    text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+    .timeline-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .destigo-timeline-page {
+        padding: 18px 16px;
+    }
+    .timeline-step-row {
+        grid-template-columns: 64px 20px 1fr;
+    }
+}
+
+/* =========================================
+   Destigo - Trip Show / Itinerary Page
+   ========================================= */
+
+.destigo-show-page {
+    background-color: #F4F7FA;
+    padding: 24px 32px;
+    min-height: 85vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1B2B3A;
+}
+
+.back-to-trips-link {
+    display: inline-block;
+    font-size: 12px;
+    color: #6B7C8F;
+    text-decoration: none;
+    margin-bottom: 6px;
+}
+
+.back-to-trips-link:hover {
+    color: #278A9B;
+    text-decoration: underline;
+}
+
+.show-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.show-trip-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 6px 0;
+    line-height: 1.25;
+}
+
+.show-trip-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #6B7C8F;
+}
+
+.btn-edit-trip-top {
+    background-color: #FFFFFF;
+    color: #173D59;
+    border: 1px solid #D5DFE8;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-edit-trip-top:hover {
+    border-color: #278A9B;
+    color: #278A9B;
+}
+
+.show-layout-grid {
+    display: grid;
+    grid-template-columns: 1.9fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.show-main-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E6ECF2;
+    border-radius: 12px;
+    padding: 18px 22px 24px 22px;
+    box-shadow: 0 1px 3px rgba(23, 61, 89, 0.04);
+}
+
+.show-tabs-bar {
+    display: flex;
+    gap: 22px;
+    border-bottom: 1px solid #EEF2F6;
+    margin-bottom: 18px;
+}
+
+.show-tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 8px 2px 10px 2px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #7A8B9C;
+    cursor: pointer;
+    margin-bottom: -1px;
+    transition: all 0.15s ease;
+}
+
+.show-tab-btn:hover {
+    color: #173D59;
+}
+
+.show-tab-btn.active {
+    color: #278A9B;
+    border-bottom-color: #278A9B;
+}
+
+.day-section-block {
+    margin-bottom: 18px;
+}
+
+.day-section-block:last-child {
+    margin-bottom: 0;
+}
+
+.day-banner-bar {
+    background-color: #EAF3F5;
+    color: #173D59;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 7px;
+    margin-bottom: 6px;
+}
+
+.schedule-row-item {
+    display: grid;
+    grid-template-columns: 82px 1fr 78px;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-bottom: 1px solid #F1F5F8;
+    font-size: 12.5px;
+}
+
+.schedule-row-item:last-child {
+    border-bottom: none;
+}
+
+.schedule-time-text {
+    color: #278A9B;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.schedule-activity-text {
+    color: #1B2B3A;
+    font-weight: 500;
+}
+
+.schedule-duration-text {
+    color: #7A8B9C;
+    font-size: 11.5px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.tab-info-box {
+    padding: 14px 4px;
+    font-size: 13px;
+    color: #5C6F82;
+    line-height: 1.55;
+}
+
+.show-side-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.show-summary-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E6ECF2;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(23, 61, 89, 0.04);
+}
+
+.show-summary-cover {
+    width: 100%;
+    height: 132px;
+    object-fit: cover;
+    display: block;
+}
+
+.show-summary-body {
+    padding: 16px 18px;
+}
+
+.show-summary-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 12px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EEF2F6;
+}
+
+.show-summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    margin-bottom: 9px;
+}
+
+.show-summary-line:last-child {
+    margin-bottom: 0;
+}
+
+.show-summary-key {
+    color: #7A8B9C;
+}
+
+.show-summary-val {
+    font-weight: 700;
+    color: #173D59;
+}
+
+.stay-cta-card {
+    background-color: #EBF5F7;
+    border: 1px solid #D3E8EC;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.stay-cta-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #173D59;
+    margin: 0 0 6px 0;
+}
+
+.stay-cta-desc {
+    font-size: 11.5px;
+    color: #5C6F82;
+    margin: 0 0 14px 0;
+    line-height: 1.45;
+}
+
+.btn-find-hotels {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #278A9B;
+    color: #FFFFFF;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.btn-find-hotels:hover {
+    background-color: #173D59;
+    color: #FFFFFF;
+}
+
+@media (max-width: 1024px) {
+    .show-layout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .destigo-show-page {
+        padding: 18px 16px;
+    }
+    .show-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .schedule-row-item {
+        grid-template-columns: 74px 1fr 64px;
+        padding: 10px 8px;
+    }
     margin-top: 25px;
 }
 
@@ -753,7 +1927,6 @@
 
 /* =================================
    DESTIGO - BOOKING HISTORY
-================================= */
 
 .booking-history {
     padding: 30px;
