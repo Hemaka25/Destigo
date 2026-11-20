@@ -47,7 +47,7 @@
 
         <div class="hm-table-header">
             <h3>Recent Reservations</h3>
-            <a href="#">View all</a>
+            <a href="{{ route('hotel.reservations') }}">View all</a>
         </div>
 
         <table class="hm-table">
@@ -73,7 +73,7 @@
                                 {{ ucfirst($booking->status) }}
                             </span>
                         </td>
-                        <td><a href="#" class="hm-view-btn">View</a></td>
+                        <td><a href="{{ route('hotel.reservations.show', $booking) }}" class="hm-view-btn">View</a></td>
                     </tr>
                 @empty
                     <tr>

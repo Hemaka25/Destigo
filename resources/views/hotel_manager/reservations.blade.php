@@ -66,7 +66,7 @@
                                     <button type="submit" class="hm-reject-btn">Reject</button>
                                 </form>
                             @else
-                                <a href="#" class="hm-view-btn">View</a>
+                                <a href="{{ route('hotel.reservations.show', $booking) }}" class="hm-view-btn">View</a>
                             @endif
                         </td>
                     </tr>

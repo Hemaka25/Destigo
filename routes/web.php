@@ -40,3 +40,6 @@ Route::put('/hotel_manager/rooms/{room}', [HotelRoomController::class, 'update']
 
 Route::delete('/hotel_manager/rooms/{room}', [HotelRoomController::class, 'destroy'])
     ->name('hotel.rooms.destroy');
+
+Route::get('/hotel_manager/reservations/{booking}', [HotelReservationController::class, 'show'])
+    ->name('hotel.reservations.show');

@@ -596,3 +596,41 @@ button.hm-icon-button {
     background-color: #fde0e0;
     color: #b32626;
 }
+
+/* Reservation details page */
+.hm-back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #278A9B;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.hm-detail-box {
+    max-width: 600px;
+    margin-top: 25px;
+    padding: 10px 25px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.hm-detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.hm-detail-row:last-child {
+    border-bottom: none;
+}
+
+.hm-detail-row span {
+    color: #666;
+}
+
+.hm-detail-row strong {
+    color: #173D59;
+}

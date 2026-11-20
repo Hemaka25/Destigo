@@ -49,4 +49,16 @@ class HotelReservationController extends Controller
         return redirect()->route('hotel.reservations')
             ->with('success', 'Reservation updated.');
     }
+    
+    // Show the full details of one reservation
+    public function show(Booking $booking)
+    {
+        // A manager can only see bookings of their own hotel
+        abort_if($booking->hotel_id !== Hotel::first()->id, 403);
+
+        // Load the guest and rooms of this booking
+        $booking->load(['user', 'rooms']);
+
+        return view('hotel_manager.reservation_show', compact('booking'));
+    }
 }
