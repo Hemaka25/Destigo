@@ -86,120 +86,71 @@
 </div>
 
 <script>
-    const tripsShowData = {
-        "1": {
-            title: "Ella Adventure",
-            area: "Ella",
-            datesRange: "10 Oct 2026 - 13 Oct 2026",
-            shortDates: "10 - 13 Oct 2026",
-            stayDates: "10 - 13 Oct",
-            duration: "3 days",
-            placesCount: "4 places",
-            travelers: "2 travelers",
-            overviewText: "A 3-day hill country escape around Ella covering scenic hikes, tea hills, waterfalls, and iconic viewpoints.",
-            coverImg: "https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?auto=format&fit=crop&w=700&q=80",
-            days: [
-                {
-                    heading: "Day 1 - 10 Oct 2026",
-                    items: [
-                        { time: "06:00 AM", activity: "Ella Rock Hike", duration: "4 hrs" },
-                        { time: "12:30 PM", activity: "Lunch Break (Ella town)", duration: "1 hr" },
-                        { time: "02:00 PM", activity: "Nine Arches Bridge", duration: "1 hr" },
-                        { time: "05:00 PM", activity: "Little Adam's Peak (sunset)", duration: "2 hrs" }
-                    ]
-                },
-                {
-                    heading: "Day 2 - 11 Oct 2026",
-                    items: [
-                        { time: "09:00 AM", activity: "Ravana Falls", duration: "1 hr" },
-                        { time: "10:30 AM", activity: "Cafe Chill", duration: "1.5 hrs" },
-                        { time: "02:00 PM", activity: "Free time in Ella town", duration: "3 hrs" }
-                    ]
-                },
-                {
-                    heading: "Day 3 - 12 Oct 2026",
-                    items: [
-                        { time: "09:00 AM", activity: "Check-out and travel back", duration: "2 hrs" }
-                    ]
-                }
+    @php
+        $dbTitle = $tripRecord->trip_name ?? 'Ella Adventure';
+        $dbArea = $tripMeta['area'] ?? 'Ella';
+        $dbStart = !empty($tripRecord->start_date) ? \Carbon\Carbon::parse($tripRecord->start_date) : \Carbon\Carbon::parse('2026-10-10');
+        $dbEnd = !empty($tripRecord->end_date) ? \Carbon\Carbon::parse($tripRecord->end_date) : \Carbon\Carbon::parse('2026-10-13');
+        $dbDaysCount = max(1, $dbStart->diffInDays($dbEnd) + 1);
+        $dbPlaces = $tripMeta['places'] ?? [];
+        $dbPlacesCount = is_array($dbPlaces) ? count($dbPlaces) : 4;
+        $dbTravelers = ($tripMeta['travelers'] ?? '2') . ' travelers';
+        $dbCover = $tripMeta['cover_img'] ?? 'https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?auto=format&fit=crop&w=700&q=80';
+        $dbDaysSchedule = $tripMeta['days'] ?? [];
+    @endphp
+
+    const fallbackDays = [
+        {
+            label: "Day 1 - {{ $dbStart->format('d M') }}",
+            items: [
+                { time: "08:00 AM", title: "Ella Rock Hike", duration: "4 hrs" },
+                { time: "12:30 PM", title: "Lunch Break", duration: "1 hr" },
+                { time: "02:30 PM", title: "Nine Arches Bridge", duration: "1.5 hrs" }
             ]
         },
-        "2": {
-            title: "Kandy Cultural Trip",
-            area: "Kandy",
-            datesRange: "15 Nov 2026 - 18 Nov 2026",
-            shortDates: "15 - 18 Nov 2026",
-            stayDates: "15 - 18 Nov",
-            duration: "4 days",
-            placesCount: "4 places",
-            travelers: "2 travelers",
-            overviewText: "Explore Kandy's heritage temples, botanical gardens, lakeside walks, and highland viewpoints.",
-            coverImg: "https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=700&q=80",
-            days: [
-                {
-                    heading: "Day 1 - 15 Nov 2026",
-                    items: [
-                        { time: "08:00 AM", activity: "Temple of the Tooth", duration: "2 hrs" },
-                        { time: "12:30 PM", activity: "Lunch near Kandy Lake", duration: "1 hr" },
-                        { time: "04:30 PM", activity: "Kandy Lake Walk", duration: "1.5 hrs" }
-                    ]
-                },
-                {
-                    heading: "Day 2 - 16 Nov 2026",
-                    items: [
-                        { time: "09:00 AM", activity: "Royal Botanic Gardens", duration: "3 hrs" },
-                        { time: "04:00 PM", activity: "Bahirawakanda Temple", duration: "1.5 hrs" }
-                    ]
-                },
-                {
-                    heading: "Day 3 - 17 Nov 2026",
-                    items: [
-                        { time: "09:00 AM", activity: "Hanthana Viewpoint", duration: "2.5 hrs" },
-                        { time: "01:00 PM", activity: "Check-out and return", duration: "2 hrs" }
-                    ]
-                }
-            ]
-        },
-        "3": {
-            title: "Mirissa Beach Getaway",
-            area: "Mirissa",
-            datesRange: "20 Dec 2026 - 24 Dec 2026",
-            shortDates: "20 - 24 Dec 2026",
-            stayDates: "20 - 24 Dec",
-            duration: "5 days",
-            placesCount: "3 places",
-            travelers: "2 travelers",
-            overviewText: "Relax along Mirissa's palm-lined beaches, coastal viewpoints, and oceanfront spots.",
-            coverImg: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80",
-            days: [
-                {
-                    heading: "Day 1 - 20 Dec 2026",
-                    items: [
-                        { time: "07:30 AM", activity: "Coconut Tree Hill", duration: "1.5 hrs" },
-                        { time: "09:30 AM", activity: "Mirissa Beach", duration: "3 hrs" },
-                        { time: "05:00 PM", activity: "Parrot Rock Bridge", duration: "1.5 hrs" }
-                    ]
-                },
-                {
-                    heading: "Day 2 - 21 Dec 2026",
-                    items: [
-                        { time: "07:00 AM", activity: "Whale Watching Cruise", duration: "4 hrs" },
-                        { time: "03:30 PM", activity: "Beachfront cafe & relaxation", duration: "2 hrs" }
-                    ]
-                },
-                {
-                    heading: "Day 3 - 22 Dec 2026",
-                    items: [
-                        { time: "09:00 AM", activity: "Check-out and coastal transfer", duration: "2 hrs" }
-                    ]
-                }
+        {
+            label: "Day 2 - {{ $dbStart->copy()->addDay()->format('d M') }}",
+            items: [
+                { time: "09:00 AM", title: "Little Adam's Peak", duration: "2 hrs" },
+                { time: "01:00 PM", title: "Cafe & Town Walk", duration: "2 hrs" }
             ]
         }
+    ];
+
+    const rawSavedDays = @json($dbDaysSchedule);
+    const formattedDays = Array.isArray(rawSavedDays) && rawSavedDays.length > 0
+        ? rawSavedDays.map((d, idx) => ({
+            heading: d.label || d.heading || `Day ${idx + 1}`,
+            items: (d.items || []).map(it => ({
+                time: it.time || "09:00 AM",
+                activity: it.title || it.activity || "Activity",
+                duration: it.duration || "2 hrs"
+            }))
+        }))
+        : fallbackDays.map(d => ({
+            heading: d.label,
+            items: d.items.map(it => ({
+                time: it.time,
+                activity: it.title,
+                duration: it.duration
+            }))
+        }));
+
+    const currentTrip = {
+        title: @json($dbTitle),
+        area: @json($dbArea),
+        datesRange: "{{ $dbStart->format('d M Y') }} - {{ $dbEnd->format('d M Y') }}",
+        shortDates: "{{ $dbStart->format('d') }} - {{ $dbEnd->format('d M Y') }}",
+        stayDates: "{{ $dbStart->format('d') }} - {{ $dbEnd->format('d M') }}",
+        duration: "{{ $dbDaysCount }} {{ $dbDaysCount === 1 ? 'day' : 'days' }}",
+        placesCount: "{{ $dbPlacesCount }} {{ $dbPlacesCount === 1 ? 'place' : 'places' }}",
+        travelers: @json($dbTravelers),
+        overviewText: "Planned itinerary for " + @json($dbTitle) + " in " + @json($dbArea) + ".",
+        coverImg: @json($dbCover),
+        days: formattedDays
     };
 
     const showAppEl = document.getElementById('tripShowApp');
-    const currentTripId = showAppEl.getAttribute('data-trip-id') || '1';
-    const currentTrip = tripsShowData[currentTripId] || tripsShowData["1"];
     let currentTab = 'itinerary';
 
     function populateTripHeaderAndSummary() {
