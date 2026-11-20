@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Models;
 
@@ -19,11 +19,12 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
+    'full_name',
+    'email',
+    'password',
+    'phone',
+    'location',
+];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -47,3 +48,4 @@ class User extends Authenticatable
         ];
     }
 }
+
