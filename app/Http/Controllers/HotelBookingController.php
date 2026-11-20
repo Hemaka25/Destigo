@@ -7,6 +7,8 @@ use App\Models\Hotel;
 use App\Models\Room;
 use App\Models\Booking;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+
 
 class HotelBookingController extends Controller
 {
@@ -38,20 +40,24 @@ public function index(Request $request)
 
 
     // Show Booking Confirmation Form
-    public function create($hotelId, $roomId)
-    {
-        $hotel = Hotel::with('rooms')->findOrFail($hotelId);
+    // Show Booking Confirmation Form
+public function create($hotelId, $roomId)
+{
+    $hotel = Hotel::with('rooms')->findOrFail($hotelId);
 
-        $room = $hotel->rooms()->findOrFail($roomId);
+    $room = $hotel->rooms()->findOrFail($roomId);
 
-        return view('hotel_booking.confirmation', compact('hotel', 'room'));
+    $trips = DB::table('trips')
+        ->where('user_id', auth()->id())
+        ->orderByDesc('start_date')
+        ->get();
 
-
-        //create() receives the selected hotel ID and room ID.
-        //Hotel::with('rooms') retrieves the hotel and its related rooms.
-        //findOrFail() finds the requested hotel and room.
-        //compact() sends both objects to confirmation.blade.php.
-    }
+    return view('hotel_booking.confirmation', compact(
+        'hotel',
+        'room',
+        'trips'
+    ));
+}
 
 
     // Store Booking
@@ -68,6 +74,8 @@ public function index(Request $request)
             'guests' => 'required|integer|min:1',
             'payment_method' => 'required|in:pay_at_hotel',
             'special_requests' => 'nullable|string|max:1000',
+            'trip_id' => ['nullable','integer',Rule::exists('trips', 'id')->where('user_id', auth()->id()),
+],
         ]);
 
         // Find the selected hotel and room
@@ -114,6 +122,7 @@ if ($existingBooking) {
             $booking = Booking::create([
                 'user_id' => auth()->id(),
                 'hotel_id' => $hotel->id,
+                'trip_id' => $validated['trip_id'] ?? null,
                 'check_in' => $validated['check_in'],
                 'check_out' => $validated['check_out'],
                 'guests' => $validated['guests'],

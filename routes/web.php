@@ -17,9 +17,8 @@ use App\Models\Room;
 // ========================================
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
-
 
 // ========================================
 // USER MANAGEMENT ROUTES
@@ -60,12 +59,20 @@ Route::get('/hotel_booking', [HotelBookingController::class, 'index']);
 // Hotel Details
 Route::get('/hotel_details/{id}', function ($id) {
 
-    $hotel = Hotel::with('rooms')->findOrFail($id);
+    $hotel = Hotel::with(['rooms', 'images'])->findOrFail($id);
 
     return view('hotel_booking.details', compact('hotel'));
 
 });
 
+// Travel Planning Module Routes
+Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');
+Route::get('/planning/create', [PlanningController::class, 'create'])->name('planning.create');
+Route::get('/planning/suggested-places', [PlanningController::class, 'suggestedPlaces'])->name('planning.suggested-places');
+Route::get('/planning/suggested-timeline', [PlanningController::class, 'suggestedTimeline'])->name('planning.suggested-timeline');
+Route::post('/planning', [PlanningController::class, 'store'])->name('planning.store');
+Route::get('/planning/{id}', [PlanningController::class, 'show'])->name('planning.show');
+Route::delete('/planning/{id}', [PlanningController::class, 'destroy'])->name('planning.destroy');
 // Booking Confirmation Form
 Route::get(
     '/booking_confirmation/{hotelId}/{roomId}',

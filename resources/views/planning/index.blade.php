@@ -271,9 +271,13 @@
             }
         }
     </style>
+    
 
     <!-- Header Row -->
     <div class="trips-header">
+        <a href="{{ route('login') }}" class="btn-back">
+    ← Back to Dashboard
+</a>
         <div>
             <h1 class="trips-title">My Trips</h1>
             <p class="trips-subtitle">Your planned trips and itineraries.</p>
