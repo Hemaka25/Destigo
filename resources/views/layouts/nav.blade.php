@@ -86,8 +86,8 @@
                         </a>
                     </li>
 
-                    <li class="{{ request()->is('my_trips*') ? 'active' : '' }}">
-                        <a href="#">
+                    <li class="{{ request()->is('planning*') ? 'active' : '' }}">
+                        <a href="{{ route('planning.index') }}">
                             <span>✈</span>
                             My Trips
                         </a>
