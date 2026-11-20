@@ -1794,7 +1794,7 @@
         grid-template-columns: 74px 1fr 64px;
         padding: 10px 8px;
     }
-    margin-top: 25px;
+    /*margin-top: 25px;*/
 }
 
 .payment-method h3 {
