@@ -69,28 +69,25 @@ Route::get('/hotel_details/{id}', function ($id) {
 
 
 // Booking Confirmation Form
-Route::get('/booking_confirmation/{hotelId}/{roomId}', function ($hotelId, $roomId) {
-
-    $hotel = Hotel::with('rooms')->findOrFail($hotelId);
-
-    $room = $hotel->rooms()->findOrFail($roomId);
-
-    return view('hotel_booking.confirmation', compact('hotel', 'room'));
-
-})->middleware('auth');
-
+Route::get(
+    '/booking_confirmation/{hotelId}/{roomId}',
+    [HotelBookingController::class, 'create']
+)->middleware('auth');
 
 // Process Booking Form
-Route::post('/booking_confirmation/{hotelId}/{roomId}', function (Request $request, $hotelId, $roomId) {
-
-    return 'Booking form submitted successfully!';
-
-})->middleware('auth');
+Route::post(
+    '/booking_confirmation/{hotelId}/{roomId}',
+    [HotelBookingController::class, 'store']
+)->middleware('auth');
 
 
 // Booking History
-Route::get('/booking_history', function () {
+Route::get(
+    '/booking_history',
+    [HotelBookingController::class, 'history']
+)->middleware('auth');
 
-    return view('hotel_booking.history');
-
-})->middleware('auth');
+Route::post(
+    '/booking_cancel/{id}',
+    [HotelBookingController::class, 'cancel']
+)->middleware('auth');

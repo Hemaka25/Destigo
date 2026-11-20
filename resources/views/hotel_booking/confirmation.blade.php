@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="booking-page">
-        <form action="{{ url('/booking_confirmation') }}" method="POST">
+       <form action="{{ url('/booking_confirmation/' . $hotel->id . '/' . $room->id) }}" method="POST">
     @csrf
 
         <a href="{{ url('/hotel_details/' . request()->route('hotelId')) }}">
@@ -24,7 +24,8 @@
                 <div class="form-group">
                     <label>Full Name</label>
                     <input type="text" name="full_name"
-                           placeholder="Enter your full name" required>
+       value="{{ auth()->user()->full_name }}"
+       placeholder="Enter your full name" required>
 
                             @error('full_name')
                                 <span class="error-message">{{ $message }}</span>
@@ -34,7 +35,8 @@
                 <div class="form-group">
                     <label>Email Address</label>
                     <input type="email" name="email"
-                           placeholder="Enter your email" required>
+       value="{{ auth()->user()->email }}"
+       placeholder="Enter your email" required>
 
                            @error('email')
                                 <span class="error-message">{{ $message }}</span>
@@ -46,7 +48,8 @@
                 <div class="form-group">
                     <label>Phone Number</label>
                     <input type="tel" name="phone"
-                           placeholder="Enter your phone number" required>
+       value="{{ auth()->user()->phone }}"
+       placeholder="Enter your phone number" required>
 
                            @error('phone')
                                 <span class="error-message">{{ $message }}</span>
@@ -118,7 +121,7 @@
 
         <div class="form-group">
             <label>Room Type</label>
-            <input type="text" value="{{ $room['type'] }}" readonly>
+            <input type="text" value="{{ $room->room_type }}" readonly>
         </div>
 
     </div>

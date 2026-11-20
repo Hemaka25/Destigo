@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +23,7 @@
 
             <div class="user-profile">
                 <span>🔔</span>
-                <span>Welcome, User</span>
+                <span>Welcome, {{ auth()->user()->full_name ?? 'User' }}</span>
             </div>
         </header>
 
@@ -31,14 +32,48 @@
 
             <!-- Sidebar -->
             <aside class="sidebar">
+
                 <h3>Menu</h3>
+
                 <ul>
-                    <li>Dashboard</li>
-                    <li>My Trips</li>
-                    <li class="{{ request()->is('hotel_booking*') ? 'active' : '' }}">Bookings</li>
-                    <li>Profiles</li>
-                    <li>Settings</li>
+
+                    <!-- Dashboard -->
+                    <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
+                        <a href="{{ url('/dashboard') }}">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <!-- My Trips -->
+                    <li class="{{ request()->is('my_trips*') ? 'active' : '' }}">
+                        <a href="#">
+                            My Trips
+                        </a>
+                    </li>
+
+                    <!-- Bookings / Booking History -->
+                    <li class="{{ request()->is('booking_history') ? 'active' : '' }}">
+                        <a href="{{ url('/booking_history') }}">
+                            Bookings
+                        </a>
+                    </li>
+
+                    <!-- Profile -->
+                    <li class="{{ request()->is('profile') ? 'active' : '' }}">
+                        <a href="{{ url('/profile') }}">
+                            Profile
+                        </a>
+                    </li>
+
+                    <!-- Settings -->
+                    <li>
+                        <a href="#">
+                            Settings
+                        </a>
+                    </li>
+
                 </ul>
+
             </aside>
 
             <!-- Page Content -->
