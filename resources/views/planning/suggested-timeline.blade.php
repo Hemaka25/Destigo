@@ -72,6 +72,17 @@
             </div>
         </div>
     </div>
+
+    <form id="saveTripForm" action="{{ route('planning.store') }}" method="POST" style="display: none;">
+        @csrf
+        <input type="hidden" name="trip_name" id="saveTripNameInput">
+        <input type="hidden" name="area" id="saveAreaInput">
+        <input type="hidden" name="start_date" id="saveStartDateInput">
+        <input type="hidden" name="end_date" id="saveEndDateInput">
+        <input type="hidden" name="travelers" id="saveTravelersInput">
+        <input type="hidden" name="places_json" id="savePlacesJsonInput">
+        <input type="hidden" name="days_json" id="saveDaysJsonInput">
+    </form>
 </div>
 
 <script>
@@ -346,10 +357,6 @@
             const stepRow = document.createElement('div');
             stepRow.className = 'timeline-step-row';
 
-            const editButtonHtml = isEditing
-                ? `<button type="button" class="timeline-edit-link" onclick="editTimelineItem(${itemIdx})">Edit</button>`
-                : `<button type="button" class="timeline-edit-link" onclick="editTimelineItem(${itemIdx})">Edit</button>`;
-
             const travelHtml = item.travelAfter
                 ? `<div class="timeline-travel-gap">~ ${item.travelAfter}</div>`
                 : '';
@@ -367,7 +374,7 @@
                             <p class="timeline-activity-duration">🕒 Duration: ${item.duration}</p>
                             <p class="timeline-activity-note">${item.note}</p>
                         </div>
-                        ${editButtonHtml}
+                        <button type="button" class="timeline-edit-link" onclick="editTimelineItem(${itemIdx})">Edit</button>
                     </div>
                     ${travelHtml}
                 </div>
@@ -398,8 +405,30 @@
     }
 
     function saveTripAndGo() {
-        alert(`Trip "${document.getElementById('summaryTripName').textContent}" saved!`);
-        window.location.href = appEl.getAttribute('data-trips-url');
+        const area = appEl.getAttribute('data-area') || 'Ella';
+        const tripName = document.getElementById('summaryTripName').textContent.trim() || (area + ' Adventure');
+        const startDate = appEl.getAttribute('data-start-date') || '2026-10-10';
+        const endDate = appEl.getAttribute('data-end-date') || '2026-10-13';
+        const travelers = appEl.getAttribute('data-travelers') || '2';
+
+        const collectedPlaces = [];
+        daysData.forEach(day => {
+            (day.items || []).forEach(it => {
+                if (it.title && !it.title.toLowerCase().includes('lunch') && !it.title.toLowerCase().includes('check-out')) {
+                    collectedPlaces.push(it.title);
+                }
+            });
+        });
+
+        document.getElementById('saveTripNameInput').value = tripName;
+        document.getElementById('saveAreaInput').value = area;
+        document.getElementById('saveStartDateInput').value = startDate;
+        document.getElementById('saveEndDateInput').value = endDate;
+        document.getElementById('saveTravelersInput').value = travelers;
+        document.getElementById('savePlacesJsonInput').value = JSON.stringify(collectedPlaces);
+        document.getElementById('saveDaysJsonInput').value = JSON.stringify(daysData);
+
+        document.getElementById('saveTripForm').submit();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
