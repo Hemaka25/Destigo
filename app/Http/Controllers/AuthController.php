@@ -25,11 +25,11 @@ class AuthController extends Controller
         ]);
 
         User::create([
-    'full_name' => $data['name'],
-    'email'     => $data['email'],
-    'password'  => Hash::make($data['password']),
-    'role'      => $data['role'],
-]);
+            'full_name' => $data['name'],
+            'email'     => $data['email'],
+            'password'  => Hash::make($data['password']),
+            'role'      => $data['role'],
+        ]);
 
         return redirect('/login')->with('success', 'Account created. Please log in.');
     }
@@ -77,8 +77,8 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             return $user->role === 'admin'
-                ? redirect('/admin/dashboard')
-                : redirect('/dashboard');
+    ? redirect('/admin/dashboard')
+    : redirect()->route('planning.index');
         }
 
         return back()

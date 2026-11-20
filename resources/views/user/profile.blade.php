@@ -4,6 +4,9 @@
 @section('heading', 'Your profile')
 
 @section('content')
+<a href="{{ route('planning.index') }}" class="btn-back">
+    ← Back to My Trips
+</a>
 <form class="card" method="POST" action="/profile" novalidate style="display:flex;flex-direction:column;gap:20px">
     @csrf
 

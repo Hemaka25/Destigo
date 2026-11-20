@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\HotelImage;
 
 class Hotel extends Model
 {
@@ -22,4 +23,9 @@ class Hotel extends Model
     {
         return $this->hasMany(Booking::class);
     }
+
+    public function images()
+{
+    return $this->hasMany(HotelImage::class);
+}
 }

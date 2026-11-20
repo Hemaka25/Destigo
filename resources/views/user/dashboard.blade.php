@@ -4,6 +4,9 @@
 @section('heading', 'Hii, ' . explode(' ', auth()->user()->name)[0])
 
 @section('content')
+<a href="{{ route('planning.index') }}" class="btn-back">
+    ← Back to My Trips
+</a>
 <div class="stats">
     <div class="card stat"><b>2</b><span>Trips planned</span></div>
     <div class="card stat"><b>3</b><span>Upcoming bookings</span></div>

@@ -1,5 +1,4 @@
-
-<?php
+﻿<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelDashboardController;
@@ -11,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HotelBookingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PlanningController;
 
 use App\Models\Hotel;
 use App\Models\Room;
@@ -20,14 +20,11 @@ use App\Models\Room;
 // ========================================
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
-Route::get('/hotel_details', function () {
-    return view('hotel_booking.details');
-}); 
-
 // Hotel Manager module
+
 Route::get('/hotel_manager/dashboard', [HotelDashboardController::class, 'index'])
     ->name('hotel.dashboard');
 
@@ -57,7 +54,6 @@ Route::delete('/hotel_manager/rooms/{room}', [HotelRoomController::class, 'destr
 
 Route::get('/hotel_manager/reservations/{booking}', [HotelReservationController::class, 'show'])
     ->name('hotel.reservations.show');
-
 // ========================================
 // USER MANAGEMENT ROUTES
 // ========================================
@@ -94,17 +90,23 @@ Route::middleware('auth')->group(function () {
 // Hotel Search
 Route::get('/hotel_booking', [HotelBookingController::class, 'index']);
 
-
 // Hotel Details
 Route::get('/hotel_details/{id}', function ($id) {
 
-    $hotel = Hotel::with('rooms')->findOrFail($id);
+    $hotel = Hotel::with(['rooms', 'images'])->findOrFail($id);
 
     return view('hotel_booking.details', compact('hotel'));
 
 });
 
-
+// Travel Planning Module Routes
+Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');
+Route::get('/planning/create', [PlanningController::class, 'create'])->name('planning.create');
+Route::get('/planning/suggested-places', [PlanningController::class, 'suggestedPlaces'])->name('planning.suggested-places');
+Route::get('/planning/suggested-timeline', [PlanningController::class, 'suggestedTimeline'])->name('planning.suggested-timeline');
+Route::post('/planning', [PlanningController::class, 'store'])->name('planning.store');
+Route::get('/planning/{id}', [PlanningController::class, 'show'])->name('planning.show');
+Route::delete('/planning/{id}', [PlanningController::class, 'destroy'])->name('planning.destroy');
 // Booking Confirmation Form
 Route::get(
     '/booking_confirmation/{hotelId}/{roomId}',
@@ -117,7 +119,6 @@ Route::post(
     [HotelBookingController::class, 'store']
 )->middleware('auth');
 
-
 // Booking History
 Route::get(
     '/booking_history',
@@ -128,3 +129,16 @@ Route::post(
     '/booking_cancel/{id}',
     [HotelBookingController::class, 'cancel']
 )->middleware('auth');
+
+
+// ========================================
+// TRAVEL PLANNING MODULE ROUTES
+// ========================================
+
+Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');
+Route::get('/planning/create', [PlanningController::class, 'create'])->name('planning.create');
+Route::get('/planning/suggested-places', [PlanningController::class, 'suggestedPlaces'])->name('planning.suggested-places');
+Route::get('/planning/suggested-timeline', [PlanningController::class, 'suggestedTimeline'])->name('planning.suggested-timeline');
+Route::post('/planning', [PlanningController::class, 'store'])->name('planning.store');
+Route::get('/planning/{id}', [PlanningController::class, 'show'])->name('planning.show');
+Route::delete('/planning/{id}', [PlanningController::class, 'destroy'])->name('planning.destroy');

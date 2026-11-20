@@ -6,9 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    protected $fillable = [
-        'user_id', 'hotel_id', 'check_in', 'check_out',
-        'guests', 'total_price', 'status',
+protected $fillable = [
+    'user_id',
+    'hotel_id',
+    'trip_id',
+    'check_in',
+    'check_out',
+    'guests',
+    'total_price',
+    'status',
+
     ];
 
     // Turn the date columns into date objects so we can format them easily
