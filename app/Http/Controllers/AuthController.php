@@ -77,8 +77,8 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             return $user->role === 'admin'
-                ? redirect('/admin/dashboard')
-                : redirect('/dashboard');
+    ? redirect('/admin/dashboard')
+    : redirect()->route('planning.index');
         }
 
         return back()

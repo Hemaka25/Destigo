@@ -84,18 +84,69 @@
 
     <h3>Stay Details</h3>
 
-    <div class="stay-form">
+<div class="stay-form">
 
-        <div class="form-group">
-            <label>Check-in Date</label>
-            <input type="date" name="check_in" required>
+    {{-- Check-in Date --}}
+    <div class="form-group">
+        <label>Check-in Date</label>
+        <input type="date" name="check_in"
+               value="{{ old('check_in') }}" required>
 
-            @error('check_in')
-                <span class="error-message">{{ $message }}</span>
-             @enderror
-        
-        
-        </div>
+        @error('check_in')
+            <span class="error-message">{{ $message }}</span>
+        @enderror
+    </div>
+
+    {{-- Check-out Date --}}
+    <div class="form-group">
+        <label>Check-out Date</label>
+        <input type="date" name="check_out"
+               value="{{ old('check_out') }}" required>
+
+        @error('check_out')
+            <span class="error-message">{{ $message }}</span>
+        @enderror
+    </div>
+
+    {{-- Number of Guests --}}
+    <div class="form-group">
+        <label>Number of Guests</label>
+        <input type="number" name="guests" min="1"
+               value="{{ old('guests', 1) }}" required>
+
+        @error('guests')
+            <span class="error-message">{{ $message }}</span>
+        @enderror
+    </div>
+
+    {{-- Room Type --}}
+    <div class="form-group">
+        <label>Room Type</label>
+        <input type="text" value="{{ $room->room_type }}" readonly>
+    </div>
+
+    {{-- Select Trip --}}
+    <div class="form-group">
+        <label>Select Your Trip (optional)</label>
+
+        <select name="trip_id">
+            <option value="">Book without a trip</option>
+
+            @foreach ($trips as $trip)
+                <option value="{{ $trip->id }}"
+                    {{ old('trip_id') == $trip->id ? 'selected' : '' }}>
+                    {{ $trip->trip_name }}
+                    ({{ $trip->start_date }} - {{ $trip->end_date }})
+                </option>
+            @endforeach
+        </select>
+
+        @error('trip_id')
+            <span class="error-message">{{ $message }}</span>
+        @enderror
+    </div>
+
+</div>
 
         <div class="form-group">
             <label>Check-out Date</label>

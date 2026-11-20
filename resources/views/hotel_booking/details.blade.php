@@ -11,21 +11,40 @@
     <p> {{ $hotel->city }}, Sri Lanka</p>
     <p> {{ $hotel->rating }} / 5</p>
 
-    <div class="hotel-gallery">
+<div class="hotel-gallery">
 
-    <div class="gallery-left">
-        <img src="https://placehold.co/600x300?text=Hotel+Main+View" alt="Hotel main view">
+    @if ($hotel->images->count() > 0)
 
-        <div class="gallery-bottom">
-            <img src="https://placehold.co/300x200?text=Hotel+Room" alt="Hotel room">
+        <div class="gallery-left">
 
-            <img src="https://placehold.co/300x200?text=Hotel+Balcony" alt="Hotel balcony">
+            <img src="{{ $hotel->images[0]->image_url }}"
+                 alt="Hotel main view">
+
+            <div class="gallery-bottom">
+
+                @foreach ($hotel->images->slice(1, 2) as $image)
+                    <img src="{{ $image->image_url }}"
+                         alt="Hotel image">
+                @endforeach
+
+            </div>
+
         </div>
-    </div>
 
-    <div class="gallery-right">
-        <img src="https://placehold.co/400x500?text=Mountain+View" alt="Mountain view">
-    </div>
+        <div class="gallery-right">
+
+            @if ($hotel->images->count() > 3)
+                <img src="{{ $hotel->images[3]->image_url }}"
+                     alt="Hotel view">
+            @endif
+
+        </div>
+
+    @else
+
+        <p>No images available for this hotel.</p>
+
+    @endif
 
 </div>
 
