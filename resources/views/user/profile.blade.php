@@ -54,4 +54,8 @@
         <button class="btn" type="submit">Save changes</button>
     </div>
 </form>
+</form>
+
+<img src="{{ asset('images/profile-art.png') }}" alt="Hiking illustration" class="art left">
+
 @endsection

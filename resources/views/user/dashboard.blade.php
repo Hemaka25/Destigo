@@ -21,4 +21,5 @@
     </div>
     <span class="pill">Upcoming</span>
 </div>
+<img src="{{ asset('images/dashboard-art.png') }}" alt="Travel illustration" class="art">
 @endsection
