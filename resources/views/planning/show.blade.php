@@ -139,6 +139,9 @@
     const currentTrip = {
         title: @json($dbTitle),
         area: @json($dbArea),
+        rawStartDate: "{{ $dbStart->format('Y-m-d') }}",
+        rawEndDate: "{{ $dbEnd->format('Y-m-d') }}",
+        rawTravelers: @json((string) ($tripMeta['travelers'] ?? '2')),
         datesRange: "{{ $dbStart->format('d M Y') }} - {{ $dbEnd->format('d M Y') }}",
         shortDates: "{{ $dbStart->format('d') }} - {{ $dbEnd->format('d M Y') }}",
         stayDates: "{{ $dbStart->format('d') }} - {{ $dbEnd->format('d M') }}",
@@ -167,9 +170,19 @@
         document.getElementById('summaryTravelersVal').textContent = currentTrip.travelers;
 
         document.getElementById('stayCtaDesc').textContent =
+  const hotelParams = new URLSearchParams({
+            area: currentTrip.area,
+            start_date: currentTrip.rawStartDate,
+            end_date: currentTrip.rawEndDate,
+            travelers: currentTrip.rawTravelers
+        });
+        const hotelBookingUrl = `{{ url('/hotel_booking') }}?${hotelParams.toString()}`;
+
+        document.getElementById('stayCtaDesc').textContent =
             `Find hotels in ${currentTrip.area} for ${currentTrip.stayDates}. Pay at the hotel when you arrive.`;
-        document.getElementById('findHotelsBtn').textContent = `Find Hotels in ${currentTrip.area}`;
-    }
+        const findHotelsBtn = document.getElementById('findHotelsBtn');
+        findHotelsBtn.textContent = `Find Hotels in ${currentTrip.area}`;
+        findHotelsBtn.href = hotelBookingUrl; }
 
     function renderItineraryTab() {
         const container = document.getElementById('showTabContent');
@@ -212,11 +225,19 @@
                 </div>
             `;
         } else if (tabName === 'hotels') {
+            const hotelParams = new URLSearchParams({
+                area: currentTrip.area,
+                start_date: currentTrip.rawStartDate,
+                end_date: currentTrip.rawEndDate,
+                travelers: currentTrip.rawTravelers
+            });
+            const hotelBookingUrl = `{{ url('/hotel_booking') }}?${hotelParams.toString()}`;
+
             container.innerHTML = `
                 <div class="tab-info-box">
                     <p style="margin: 0 0 10px 0; font-weight: 700; color: #173D59;">Stays in ${currentTrip.area}</p>
                     <p style="margin: 0 0 12px 0;">Browse available stays in ${currentTrip.area} for ${currentTrip.stayDates}.</p>
-                    <a href="{{ url('/hotel_booking') }}" class="btn-find-hotels" style="max-width: 220px;">Browse Stays</a>
+                    <a href="${hotelBookingUrl}" class="btn-find-hotels" style="max-width: 220px;">Browse Stays</a>
                 </div>
             `;
         }
