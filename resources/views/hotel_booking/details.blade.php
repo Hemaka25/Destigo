@@ -44,10 +44,8 @@
     <h2>About This Hotel</h2>
 
     <p>
-        Ella Mount View Hotel is a comfortable place to stay in Ella,
-        Sri Lanka. Enjoy beautiful mountain views, relaxing rooms,
-        and convenient access to popular attractions.
-    </p>
+    {{ $hotel->description ?? 'No description available for this hotel.' }}
+</p>
 
 </div>
 
