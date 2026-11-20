@@ -8,6 +8,24 @@ use Carbon\Carbon;
 
 class PlanningController extends Controller
 {
+    private function resolveCoverImage(?string $area): string
+{
+    $coverImages = [
+        'ella' => asset('images/trips/ella.jpg'),
+        'kandy' => asset('images/trips/kandy.jpg'),
+        'galle' => asset('images/trips/galle.jpg'),
+        'sigiriya' => asset('images/trips/sigiriya.jpg'),
+        'mirissa' => asset('images/trips/mirissa.jpg'),
+        'nuwara eliya' => asset('images/trips/nuwara-eliya.jpg'),
+        'colombo' => asset('images/trips/colombo.jpg'),
+        'trincomalee' => asset('images/trips/trincomalee.jpg'),
+    ];
+
+    $key = strtolower(trim($area ?? 'ella'));
+
+    return $coverImages[$key] ?? $coverImages['ella'];
+}
+
     public function index()
     {
         $loggedInUserId = auth()->id();
@@ -30,17 +48,18 @@ class PlanningController extends Controller
             $daysCount = max(1, $start->diffInDays($end) + 1);
             $placesList = $meta['places'] ?? [];
             $placesCount = is_array($placesList) ? count($placesList) : 0;
+            $area = $meta['area'] ?? 'Ella';
 
             return (object) [
                 'id' => $row->id,
                 'trip_name' => $row->trip_name,
-                'area' => $meta['area'] ?? 'Ella',
+                'area' => $area,
                 'start_date_formatted' => $start->format('d M Y'),
                 'end_date_formatted' => $end->format('d M Y'),
                 'days_count' => $daysCount,
                 'places_count' => $placesCount,
                 'travelers' => $meta['travelers'] ?? '2',
-                'cover_img' => $meta['cover_img'] ?? 'https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=600&q=80',
+                'cover_img' => $meta['cover_img'] ?? $this->resolveCoverImage($area),
             ];
         });
 
@@ -85,23 +104,14 @@ class PlanningController extends Controller
         }
 
         $area = $validated['area'] ?? 'Ella';
-        $coverImages = [
-            'Ella' => 'https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=700&q=80',
-            'Kandy' => 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=700&q=80',
-            'Galle' => 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=700&q=80',
-            'Sigiriya' => 'https://images.unsplash.com/photo-1588598198321-9735fd52df0c?auto=format&fit=crop&w=700&q=80',
-            'Mirissa' => 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
-            'Nuwara Eliya' => 'https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?auto=format&fit=crop&w=700&q=80',
-            'Colombo' => 'https://images.unsplash.com/photo-1578469645742-46cae010e5d4?auto=format&fit=crop&w=700&q=80',
-            'Trincomalee' => 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=700&q=80',
-        ];
+        $coverImg = $this->resolveCoverImage($area);
 
         $descriptionPayload = json_encode([
             'area' => $area,
             'travelers' => $validated['travelers'] ?? '2',
             'places' => $places,
             'days' => $days,
-            'cover_img' => $coverImages[$area] ?? $coverImages['Ella'],
+            'cover_img' => $coverImg,
         ]);
 
         $userId = auth()->id();
@@ -109,7 +119,7 @@ class PlanningController extends Controller
             $user = DB::table('users')->first();
             if (!$user) {
                 $userId = DB::table('users')->insertGetId([
-                    'name' => 'Tharusha Nimneth',
+                    'full_name' => 'Tharusha Nimneth',
                     'email' => 'tharusha@example.com',
                     'password' => bcrypt('password123'),
                     'created_at' => now(),
@@ -144,6 +154,10 @@ class PlanningController extends Controller
         $meta = json_decode($row->description ?? '{}', true);
         if (!is_array($meta)) {
             $meta = [];
+        }
+
+        if (empty($meta['cover_img'])) {
+            $meta['cover_img'] = $this->resolveCoverImage($meta['area'] ?? 'Ella');
         }
 
         return view('planning.show', [
