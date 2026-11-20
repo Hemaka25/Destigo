@@ -12,11 +12,9 @@ return new class extends Migration
    public function up(): void
 {
     Schema::table('users', function (Blueprint $table) {
-        $table->string('role')->default('user')->after('email');
-        $table->string('phone')->nullable();
-        $table->string('location')->nullable();
-        $table->string('language')->nullable();
-        $table->string('currency')->nullable();
+        if (!Schema::hasColumn('users', 'role')) {
+            $table->string('role')->default('user')->after('email');
+        }
     });
 }
     /**

@@ -25,4 +25,8 @@ class Hotel extends Model
     {
         return $this->hasMany(Booking::class); //means one hotel can have multiple bookings
     }
+    public function images()
+{
+    return $this->hasMany(HotelImage::class);
+}
 }

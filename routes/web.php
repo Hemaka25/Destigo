@@ -17,9 +17,8 @@ use App\Models\Room;
 // ========================================
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
-
 
 // ========================================
 // USER MANAGEMENT ROUTES
@@ -60,11 +59,9 @@ Route::get('/hotel_booking', [HotelBookingController::class, 'index']);
 
 // Hotel Details
 Route::get('/hotel_details/{id}', function ($id) {
-
-    $hotel = Hotel::with('rooms')->findOrFail($id);
+    $hotel = Hotel::with(['rooms', 'images'])->findOrFail($id);
 
     return view('hotel_booking.details', compact('hotel'));
-
 });
 
 
