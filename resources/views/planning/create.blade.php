@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="destigo-create-page">
+   <a href="{{ route('planning.index') }}" class="btn-back">
+    ← Back to Paln
+</a>
     <!-- Page Header -->
     <div class="create-header">
         <h1 class="create-title">Plan Your Trip</h1>
