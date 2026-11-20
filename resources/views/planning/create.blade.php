@@ -175,3 +175,44 @@
                         <option value="3">3 Travelers</option>
                         <option value="4">4 Travelers</option>
                         <option value="5+">5+ Travelers</option>
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Interests</label>
+                    <div class="interests-wrap">
+                        <button type="button" class="interest-pill active" data-interest="Nature" onclick="toggleInterest(this)">Nature</button>
+                        <button type="button" class="interest-pill" data-interest="Culture" onclick="toggleInterest(this)">Culture</button>
+                        <button type="button" class="interest-pill" data-interest="Food" onclick="toggleInterest(this)">Food</button>
+                        <button type="button" class="interest-pill active" data-interest="Adventure" onclick="toggleInterest(this)">Adventure</button>
+                        <button type="button" class="interest-pill" data-interest="Beach" onclick="toggleInterest(this)">Beach</button>
+                        <button type="button" class="interest-pill" data-interest="Wildlife" onclick="toggleInterest(this)">Wildlife</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-suggestions">Get Suggestions</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function selectArea(cardEl) {
+            document.querySelectorAll('.area-card').forEach(el => el.classList.remove('selected'));
+            cardEl.classList.add('selected');
+            const area = cardEl.getAttribute('data-area');
+            document.getElementById('selectedAreaInput').value = area;
+            const tripNameInput = document.getElementById('tripName');
+            if (tripNameInput && tripNameInput.value.trim() !== '') {
+                tripNameInput.value = area + ' Adventure';
+            }
+        }
+
+        function toggleInterest(btnEl) {
+            btnEl.classList.toggle('active');
+            const activeInterests = Array.from(document.querySelectorAll('.interest-pill.active'))
+                .map(el => el.getAttribute('data-interest'));
+            document.getElementById('selectedInterestsInput').value = activeInterests.join(',');
+        }
+    </script>
+</div>
+@endsection
