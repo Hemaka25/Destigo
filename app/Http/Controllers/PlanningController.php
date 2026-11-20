@@ -10,9 +10,14 @@ class PlanningController extends Controller
 {
     public function index()
     {
-        $rows = DB::table('trips')
-            ->orderByDesc('id')
-            ->get();
+        $loggedInUserId = auth()->id();
+
+        $query = DB::table('trips')->orderByDesc('id');
+        if ($loggedInUserId) {
+            $query->where('user_id', $loggedInUserId);
+        }
+
+        $rows = $query->get();
 
         $trips = $rows->map(function ($row) {
             $meta = json_decode($row->description ?? '{}', true);
@@ -99,7 +104,21 @@ class PlanningController extends Controller
             'cover_img' => $coverImages[$area] ?? $coverImages['Ella'],
         ]);
 
-        $userId = optional(DB::table('users')->first())->id ?? 1;
+        $userId = auth()->id();
+        if (!$userId) {
+            $user = DB::table('users')->first();
+            if (!$user) {
+                $userId = DB::table('users')->insertGetId([
+                    'name' => 'Tharusha Nimneth',
+                    'email' => 'tharusha@example.com',
+                    'password' => bcrypt('password123'),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            } else {
+                $userId = $user->id;
+            }
+        }
 
         DB::table('trips')->insert([
             'user_id' => $userId,
