@@ -1,0 +1,30 @@
+:root{--navy:#173D59;--teal:#278A9B;--white:#fff;--gray:#F4F7FA;--line:#D5DEE7;--muted:#5C6F82}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Inter',sans-serif;color:var(--navy);background:var(--gray)}
+.page{display:grid;grid-template-columns:480px 1fr;min-height:100vh}
+.brand{background:linear-gradient(160deg,var(--navy),var(--teal));color:#fff;padding:40px;display:flex;flex-direction:column;gap:28px}
+.brand.admin{background:linear-gradient(160deg,#0F2A3E,var(--navy))}
+.logo{font-size:24px;font-weight:700}
+.photo{flex:1;max-height:420px;border-radius:12px;background-size:cover;background-position:center;background-color:rgba(255,255,255,.15)}
+.brand h2{margin:0;font-size:30px;line-height:1.2}
+.side{display:flex;align-items:center;justify-content:center;padding:32px}
+.form{width:100%;max-width:440px;display:flex;flex-direction:column;gap:16px}
+.form h1{margin:0;font-size:30px}.sub{margin:6px 0 0;color:var(--muted);font-size:14px}
+.badge{align-self:flex-start;font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;background:#E4F2F4;color:var(--teal)}
+.badge.admin{background:var(--navy);color:#fff}
+label.lb,.lb{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+input[type=text],input[type=email],input[type=password]{width:100%;height:48px;border:1px solid var(--line);border-radius:10px;padding:0 14px;font:400 14px 'Inter',sans-serif;background:#fff;color:var(--navy)}
+input:focus{outline:2px solid var(--teal);border-color:transparent}
+.roles{display:flex;gap:12px}
+.role{flex:1;display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;cursor:pointer}
+.role:has(input:checked){border:2px solid var(--teal);padding:13px}
+.role input{accent-color:var(--teal);margin-top:3px}
+.role b{display:block;font-size:14px}.role span{font-size:12px;color:var(--muted)}
+.row{display:flex;gap:12px}.row>div{flex:1}
+.between{display:flex;justify-content:space-between;font-size:13px}
+.btn{height:50px;border:0;border-radius:10px;background:var(--navy);color:#fff;font:600 15px 'Inter',sans-serif;cursor:pointer}
+.btn.teal{background:var(--teal)}.btn:hover{opacity:.92}
+a{color:var(--teal);font-weight:600;text-decoration:none}
+.center{text-align:center;font-size:14px;color:var(--muted);margin:0}
+.error{color:#B42318;font-size:13px;min-height:16px;margin:0}
+@media(max-width:900px){.page{grid-template-columns:1fr}.brand{display:none}}
