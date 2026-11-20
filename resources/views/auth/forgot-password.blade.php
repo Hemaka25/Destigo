@@ -3,6 +3,7 @@
 @section('title', 'Forgot password')
 @section('image', 'forgot.jpg')
 @section('tagline', 'It happens to the best of us.')
+@section('photo_class', 'contain')
 
 @section('content')
 <form class="form" method="POST" action="/forgot-password" novalidate>

@@ -28,3 +28,4 @@ a{color:var(--teal);font-weight:600;text-decoration:none}
 .center{text-align:center;font-size:14px;color:var(--muted);margin:0}
 .error{color:#B42318;font-size:13px;min-height:16px;margin:0}
 @media(max-width:900px){.page{grid-template-columns:1fr}.brand{display:none}}
+.photo.contain{flex:none;align-self:center;width:auto;height:min(620px,62vh);aspect-ratio:353/616;max-height:none;background-size:cover,cover;background-repeat:no-repeat;background-position:center;border-radius:12px}
