@@ -3,90 +3,94 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\HotelBookingController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
-// Hotel Search Route
 use App\Models\Hotel;
+use App\Models\Room;
 
+// ========================================
+// HOME ROUTE
+// ========================================
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+// ========================================
+// USER MANAGEMENT ROUTES
+// ========================================
+
+Route::get('/register', [AuthController::class, 'showRegister']);
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::get('/user-login', [AuthController::class, 'showUserLogin']);
+Route::get('/admin-login', [AuthController::class, 'showAdminLogin']);
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/forgot-password', [AuthController::class, 'showForgot']);
+Route::post('/forgot-password', [AuthController::class, 'resetPassword']);
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('user.dashboard');
+    });
+
+    Route::get('/profile', [ProfileController::class, 'show']);
+    Route::post('/profile', [ProfileController::class, 'update']);
+
+});
+
+
+// ========================================
+// HOTEL BOOKING ROUTES
+// ========================================
+
+// Hotel Search
 Route::get('/hotel_booking', [HotelBookingController::class, 'index']);
 
-// Hotel Details Route
+
+// Hotel Details
 Route::get('/hotel_details/{id}', function ($id) {
 
-    $hotel = App\Models\Hotel::with('rooms')->findOrFail($id);   
-            //Hotel::with('rooms') Retrieves the hotel and its related rooms using the relationship you created in Hotel.php.
-            //findOrFail($id) Searches for the hotel using its ID.
-            //compact('hotel')Passes the retrieved hotel information to your Blade page.
+    $hotel = Hotel::with('rooms')->findOrFail($id);
+
     return view('hotel_booking.details', compact('hotel'));
 
 });
 
-// Booking Form Route
-Route::get('/booking_confirmation/{hotelId}/{roomIndex}', function ($hotelId, $roomIndex) {
 
-    $hotels = [
-        1 => [
-            'name' => 'Ella Mount View Hotel',
-            'location' => 'Ella, Sri Lanka',
-            'rooms' => [
-                ['type' => 'Deluxe Room', 'guests' => 2, 'price' => 12000],
-                ['type' => 'Double Room', 'guests' => 2, 'price' => 15000],
-                ['type' => 'Family Room', 'guests' => 4, 'price' => 20000]
-            ]
-        ],
+// Booking Confirmation Form
+Route::get('/booking_confirmation/{hotelId}/{roomId}', function ($hotelId, $roomId) {
 
-        2 => [
-            'name' => 'Kandy City Hotel',
-            'location' => 'Kandy, Sri Lanka',
-            'rooms' => [
-                ['type' => 'Deluxe Room', 'guests' => 2, 'price' => 12000],
-                ['type' => 'Double Room', 'guests' => 2, 'price' => 13000],
-                ['type' => 'Family Room', 'guests' => 4, 'price' => 20000]
-            ]
-        ],
+    $hotel = Hotel::with('rooms')->findOrFail($hotelId);
 
-        3 => [
-            'name' => 'Mirissa Beach Resort',
-            'location' => 'Mirissa, Sri Lanka',
-            'rooms' => [
-                ['type' => 'Deluxe Room', 'guests' => 2, 'price' => 12000],
-                ['type' => 'Double Room', 'guests' => 2, 'price' => 13000],
-                ['type' => 'Family Room', 'guests' => 4, 'price' => 20000]
-            ]
-        ]
-    ];
+    $room = $hotel->rooms()->findOrFail($roomId);
 
-    if (
-        !isset($hotels[$hotelId]) ||
-        !isset($hotels[$hotelId]['rooms'][$roomIndex])
-    ) {
-        abort(404);
-    }
+    return view('hotel_booking.confirmation', compact('hotel', 'room'));
 
-    return view('hotel_booking.confirmation', [
-        'hotel' => $hotels[$hotelId],
-        'room' => $hotels[$hotelId]['rooms'][$roomIndex]
-    ]);
-});
+})->middleware('auth');
+
 
 // Process Booking Form
-Route::post('/booking_confirmation', function (Request $request) {
-
-    $validated = $request->validate([
-        'full_name' => 'required|string|max:255',
-        'email' => 'required|email',
-        'phone' => 'required|string|max:20',
-        'country' => 'required|string|max:100',
-        'check_in' => 'required|date',
-        'check_out' => 'required|date|after:check_in',
-        'guests' => 'required|integer|min:1',
-        'payment_method' => 'required|in:pay_at_hotel',
-    ]);
+Route::post('/booking_confirmation/{hotelId}/{roomId}', function (Request $request, $hotelId, $roomId) {
 
     return 'Booking form submitted successfully!';
-});
 
-// Booking History Route
+})->middleware('auth');
+
+
+// Booking History
 Route::get('/booking_history', function () {
+
     return view('hotel_booking.history');
-});
+
+})->middleware('auth');
