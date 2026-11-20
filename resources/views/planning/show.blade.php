@@ -3,6 +3,18 @@
 @section('content')
 @php
     $tripId = $id ?? request()->route('id') ?? 1;
+    $dbTitle = $tripRecord->trip_name ?? 'Ella Adventure';
+    $dbArea = $tripMeta['area'] ?? 'Ella';
+    $areaSlug = strtolower(str_replace(' ', '-', trim($dbArea)));
+    $localCoverUrl = asset('images/trips/' . $areaSlug . '.jpg');
+    $fallbackCoverUrl = 'https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=700&q=80';
+    $dbStart = !empty($tripRecord->start_date) ? \Carbon\Carbon::parse($tripRecord->start_date) : \Carbon\Carbon::parse('2026-10-10');
+    $dbEnd = !empty($tripRecord->end_date) ? \Carbon\Carbon::parse($tripRecord->end_date) : \Carbon\Carbon::parse('2026-10-13');
+    $dbDaysCount = max(1, $dbStart->diffInDays($dbEnd) + 1);
+    $dbPlaces = $tripMeta['places'] ?? [];
+    $dbPlacesCount = is_array($dbPlaces) ? count($dbPlaces) : 4;
+    $dbTravelers = ($tripMeta['travelers'] ?? '2') . ' travelers';
+    $dbDaysSchedule = $tripMeta['days'] ?? [];
 @endphp
 
 <div id="tripShowApp" class="destigo-show-page"
@@ -15,14 +27,14 @@
     <!-- Header Row -->
     <div class="show-header-row">
         <div>
-            <h1 id="showTripTitle" class="show-trip-title">Ella Adventure</h1>
+            <h1 id="showTripTitle" class="show-trip-title">{{ $dbTitle }}</h1>
             <div class="show-trip-meta">
                 <span>📅</span>
-                <span id="showHeaderDates">10 Oct 2026 - 13 Oct 2026</span>
+                <span id="showHeaderDates">{{ $dbStart->format('d M Y') }} - {{ $dbEnd->format('d M Y') }}</span>
                 <span>·</span>
-                <span id="showHeaderDuration">3 days</span>
+                <span id="showHeaderDuration">{{ $dbDaysCount }} {{ $dbDaysCount === 1 ? 'day' : 'days' }}</span>
                 <span>·</span>
-                <span id="showHeaderPlaces">4 places</span>
+                <span id="showHeaderPlaces">{{ $dbPlacesCount }} {{ $dbPlacesCount === 1 ? 'place' : 'places' }}</span>
             </div>
         </div>
         <button type="button" class="btn-edit-trip-top" onclick="editCurrentTrip()">Edit Trip</button>
@@ -43,31 +55,33 @@
         <!-- Right Column: Trip Summary + Need a place to stay? -->
         <div class="show-side-stack">
             <div class="show-summary-card">
-                <img id="showCoverImg" class="show-summary-cover"
-                     src="https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?auto=format&fit=crop&w=700&q=80"
-                     alt="Trip Cover">
+                <img id="showCoverImg"
+                     class="show-summary-cover"
+                     src="{{ $localCoverUrl }}"
+                     onerror="this.onerror=null;this.src='{{ $fallbackCoverUrl }}';"
+                     alt="{{ $dbArea }}">
                 <div class="show-summary-body">
                     <h2 class="show-summary-heading">Trip Summary</h2>
 
                     <div class="show-summary-line">
                         <span class="show-summary-key">Area</span>
-                        <span id="summaryAreaVal" class="show-summary-val">Ella</span>
+                        <span id="summaryAreaVal" class="show-summary-val">{{ $dbArea }}</span>
                     </div>
                     <div class="show-summary-line">
                         <span class="show-summary-key">Dates</span>
-                        <span id="summaryDatesVal" class="show-summary-val">10 - 13 Oct 2026</span>
+                        <span id="summaryDatesVal" class="show-summary-val">{{ $dbStart->format('d') }} - {{ $dbEnd->format('d M Y') }}</span>
                     </div>
                     <div class="show-summary-line">
                         <span class="show-summary-key">Duration</span>
-                        <span id="summaryDurationVal" class="show-summary-val">3 days</span>
+                        <span id="summaryDurationVal" class="show-summary-val">{{ $dbDaysCount }} {{ $dbDaysCount === 1 ? 'day' : 'days' }}</span>
                     </div>
                     <div class="show-summary-line">
                         <span class="show-summary-key">Places</span>
-                        <span id="summaryPlacesVal" class="show-summary-val">4 places</span>
+                        <span id="summaryPlacesVal" class="show-summary-val">{{ $dbPlacesCount }} {{ $dbPlacesCount === 1 ? 'place' : 'places' }}</span>
                     </div>
                     <div class="show-summary-line">
                         <span class="show-summary-key">Travelers</span>
-                        <span id="summaryTravelersVal" class="show-summary-val">2 travelers</span>
+                        <span id="summaryTravelersVal" class="show-summary-val">{{ $dbTravelers }}</span>
                     </div>
                 </div>
             </div>
@@ -75,10 +89,10 @@
             <div class="stay-cta-card">
                 <h2 class="stay-cta-title">Need a place to stay?</h2>
                 <p id="stayCtaDesc" class="stay-cta-desc">
-                    Find hotels in Ella for 10 - 13 Oct. Pay at the hotel when you arrive.
+                    Find hotels in {{ $dbArea }} for {{ $dbStart->format('d') }} - {{ $dbEnd->format('d M') }}. Pay at the hotel when you arrive.
                 </p>
                 <a id="findHotelsBtn" href="{{ url('/hotel_booking') }}" class="btn-find-hotels">
-                    Find Hotels in Ella
+                    Find Hotels in {{ $dbArea }}
                 </a>
             </div>
         </div>
@@ -86,19 +100,6 @@
 </div>
 
 <script>
-    @php
-        $dbTitle = $tripRecord->trip_name ?? 'Ella Adventure';
-        $dbArea = $tripMeta['area'] ?? 'Ella';
-        $dbStart = !empty($tripRecord->start_date) ? \Carbon\Carbon::parse($tripRecord->start_date) : \Carbon\Carbon::parse('2026-10-10');
-        $dbEnd = !empty($tripRecord->end_date) ? \Carbon\Carbon::parse($tripRecord->end_date) : \Carbon\Carbon::parse('2026-10-13');
-        $dbDaysCount = max(1, $dbStart->diffInDays($dbEnd) + 1);
-        $dbPlaces = $tripMeta['places'] ?? [];
-        $dbPlacesCount = is_array($dbPlaces) ? count($dbPlaces) : 4;
-        $dbTravelers = ($tripMeta['travelers'] ?? '2') . ' travelers';
-        $dbCover = $tripMeta['cover_img'] ?? 'https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?auto=format&fit=crop&w=700&q=80';
-        $dbDaysSchedule = $tripMeta['days'] ?? [];
-    @endphp
-
     const fallbackDays = [
         {
             label: "Day 1 - {{ $dbStart->format('d M') }}",
@@ -139,6 +140,9 @@
     const currentTrip = {
         title: @json($dbTitle),
         area: @json($dbArea),
+        rawStartDate: "{{ $dbStart->format('Y-m-d') }}",
+        rawEndDate: "{{ $dbEnd->format('Y-m-d') }}",
+        rawTravelers: @json((string) ($tripMeta['travelers'] ?? '2')),
         datesRange: "{{ $dbStart->format('d M Y') }} - {{ $dbEnd->format('d M Y') }}",
         shortDates: "{{ $dbStart->format('d') }} - {{ $dbEnd->format('d M Y') }}",
         stayDates: "{{ $dbStart->format('d') }} - {{ $dbEnd->format('d M') }}",
@@ -146,7 +150,7 @@
         placesCount: "{{ $dbPlacesCount }} {{ $dbPlacesCount === 1 ? 'place' : 'places' }}",
         travelers: @json($dbTravelers),
         overviewText: "Planned itinerary for " + @json($dbTitle) + " in " + @json($dbArea) + ".",
-        coverImg: @json($dbCover),
+        coverImg: @json($localCoverUrl),
         days: formattedDays
     };
 
@@ -166,9 +170,19 @@
         document.getElementById('summaryPlacesVal').textContent = currentTrip.placesCount;
         document.getElementById('summaryTravelersVal').textContent = currentTrip.travelers;
 
+        const hotelParams = new URLSearchParams({
+            area: currentTrip.area,
+            start_date: currentTrip.rawStartDate,
+            end_date: currentTrip.rawEndDate,
+            travelers: currentTrip.rawTravelers
+        });
+        const hotelBookingUrl = `{{ url('/hotel_booking') }}?${hotelParams.toString()}`;
+
         document.getElementById('stayCtaDesc').textContent =
             `Find hotels in ${currentTrip.area} for ${currentTrip.stayDates}. Pay at the hotel when you arrive.`;
-        document.getElementById('findHotelsBtn').textContent = `Find Hotels in ${currentTrip.area}`;
+        const findHotelsBtn = document.getElementById('findHotelsBtn');
+        findHotelsBtn.textContent = `Find Hotels in ${currentTrip.area}`;
+        findHotelsBtn.href = hotelBookingUrl;
     }
 
     function renderItineraryTab() {
@@ -212,11 +226,19 @@
                 </div>
             `;
         } else if (tabName === 'hotels') {
+            const hotelParams = new URLSearchParams({
+                area: currentTrip.area,
+                start_date: currentTrip.rawStartDate,
+                end_date: currentTrip.rawEndDate,
+                travelers: currentTrip.rawTravelers
+            });
+            const hotelBookingUrl = `{{ url('/hotel_booking') }}?${hotelParams.toString()}`;
+
             container.innerHTML = `
                 <div class="tab-info-box">
                     <p style="margin: 0 0 10px 0; font-weight: 700; color: #173D59;">Stays in ${currentTrip.area}</p>
                     <p style="margin: 0 0 12px 0;">Browse available stays in ${currentTrip.area} for ${currentTrip.stayDates}.</p>
-                    <a href="{{ url('/hotel_booking') }}" class="btn-find-hotels" style="max-width: 220px;">Browse Stays</a>
+                    <a href="${hotelBookingUrl}" class="btn-find-hotels" style="max-width: 220px;">Browse Stays</a>
                 </div>
             `;
         }

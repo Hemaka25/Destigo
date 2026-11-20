@@ -26,7 +26,9 @@
                         <!-- Ella -->
                         <div class="area-card selected" data-area="Ella" onclick="selectArea(this)">
                             <div class="area-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=400&q=75" alt="Ella">
+                                <img src="{{ asset('images/trips/ella.jpg') }}"
+                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=400&q=75';"
+                                     alt="Ella">
                                 <span class="area-check">✓</span>
                             </div>
                             <p class="area-name">Ella</p>
@@ -36,7 +38,9 @@
                         <!-- Kandy -->
                         <div class="area-card" data-area="Kandy" onclick="selectArea(this)">
                             <div class="area-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=400&q=75" alt="Kandy">
+                                <img src="{{ asset('images/trips/kandy.jpg') }}"
+                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=400&q=75';"
+                                     alt="Kandy">
                                 <span class="area-check">✓</span>
                             </div>
                             <p class="area-name">Kandy</p>
@@ -46,7 +50,9 @@
                         <!-- Galle -->
                         <div class="area-card" data-area="Galle" onclick="selectArea(this)">
                             <div class="area-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=400&q=75" alt="Galle">
+                                <img src="{{ asset('images/trips/galle.jpg') }}"
+                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=75';"
+                                     alt="Galle">
                                 <span class="area-check">✓</span>
                             </div>
                             <p class="area-name">Galle</p>
@@ -56,7 +62,9 @@
                         <!-- Sigiriya -->
                         <div class="area-card" data-area="Sigiriya" onclick="selectArea(this)">
                             <div class="area-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1588598198321-9735fd52df0c?auto=format&fit=crop&w=400&q=75" alt="Sigiriya">
+                                <img src="{{ asset('images/trips/sigiriya.jpg') }}"
+                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=400&q=75';"
+                                     alt="Sigiriya">
                                 <span class="area-check">✓</span>
                             </div>
                             <p class="area-name">Sigiriya</p>
@@ -66,7 +74,9 @@
                         <!-- Mirissa -->
                         <div class="area-card" data-area="Mirissa" onclick="selectArea(this)">
                             <div class="area-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=75" alt="Mirissa">
+                                <img src="{{ asset('images/trips/mirissa.jpg') }}"
+                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=75';"
+                                     alt="Mirissa">
                                 <span class="area-check">✓</span>
                             </div>
                             <p class="area-name">Mirissa</p>
@@ -76,7 +86,9 @@
                         <!-- Nuwara Eliya -->
                         <div class="area-card" data-area="Nuwara Eliya" onclick="selectArea(this)">
                             <div class="area-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?auto=format&fit=crop&w=400&q=75" alt="Nuwara Eliya">
+                                <img src="{{ asset('images/trips/nuwara-eliya.jpg') }}"
+                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=400&q=75';"
+                                     alt="Nuwara Eliya">
                                 <span class="area-check">✓</span>
                             </div>
                             <p class="area-name">Nuwara Eliya</p>
@@ -86,7 +98,9 @@
                         <!-- Colombo -->
                         <div class="area-card" data-area="Colombo" onclick="selectArea(this)">
                             <div class="area-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1578469645742-46cae010e5d4?auto=format&fit=crop&w=400&q=75" alt="Colombo">
+                                <img src="{{ asset('images/trips/colombo.jpg') }}"
+                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=75';"
+                                     alt="Colombo">
                                 <span class="area-check">✓</span>
                             </div>
                             <p class="area-name">Colombo</p>
@@ -96,7 +110,9 @@
                         <!-- Trincomalee -->
                         <div class="area-card" data-area="Trincomalee" onclick="selectArea(this)">
                             <div class="area-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=75" alt="Trincomalee">
+                                <img src="{{ asset('images/trips/trincomalee.jpg') }}"
+                                     onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=75';"
+                                     alt="Trincomalee">
                                 <span class="area-check">✓</span>
                             </div>
                             <p class="area-name">Trincomalee</p>
@@ -162,7 +178,7 @@
                         <option value="3">3 Travelers</option>
                         <option value="4">4 Travelers</option>
                         <option value="5+">5+ Travelers</option>
-                    </select>
+                        </select>
                 </div>
 
                 <div class="form-group">
