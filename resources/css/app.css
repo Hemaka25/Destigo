@@ -987,6 +987,7 @@ button.hm-icon-button {
     padding: 12px;
     color: inherit;
     text-decoration: none;
+}
 .full-width {
     grid-column: 1 / -1;
 }

@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="hm-page-header">
+        
         <div>
             <h1>Room Management</h1>
             <p>Add, edit and manage your hotel rooms.</p>

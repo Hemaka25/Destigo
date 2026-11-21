@@ -1,7 +1,7 @@
 @extends('layouts.hotel_manager')
 
 @section('content')
-
+    <a href="{{ url('/login') }}">← Back to Login</a>
     <h1>Welcome, {{ $hotel->hotel_name }}!</h1>
     <p>Here's your hotel overview.</p>
 
